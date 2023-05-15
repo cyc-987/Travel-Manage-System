@@ -1,5 +1,7 @@
 #include "myHeader.h"
 
+bool isLog = TRUE;
+
 void display()
 {
 }
