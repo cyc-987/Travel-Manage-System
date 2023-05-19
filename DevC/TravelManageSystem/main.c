@@ -1,6 +1,10 @@
 #include "myHeader.h"
 
 bool isLog = TRUE;
+int systemStatus = 0;
+int itemNum = 0;
+travelItem *itemHead = NULL;
+fileHead *FileHead = NULL;
 
 void display()
 {

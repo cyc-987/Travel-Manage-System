@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o
-LINKOBJ  = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o
+OBJ      = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o
+LINKOBJ  = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o
 LIBS     = -L"D:/Dev-Cpp/MinGW64/lib32" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -mwindows -m32 -g3
 INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"../../libgraphics" -I"../../simpleGUI"
 CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"../../libgraphics" -I"../../simpleGUI"
@@ -50,3 +50,6 @@ $(BIN): $(OBJ)
 
 ../compiled/main.o: main.c
 	$(CC) -c main.c -o ../compiled/main.o $(CFLAGS)
+
+../compiled/fileOperation.o: fileOperation.c
+	$(CC) -c fileOperation.c -o ../compiled/fileOperation.o $(CFLAGS)

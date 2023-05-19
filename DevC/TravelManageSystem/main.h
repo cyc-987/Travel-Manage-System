@@ -3,9 +3,6 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
-extern int systemStatus;
-extern bool isLog;
-
 typedef struct Date
 {
     int year;
@@ -28,7 +25,19 @@ typedef struct travelItem{
 
     char keyword[50];
     char detail[200];
-}
+
+    struct travelItem *nextItem;
+}travelItem;
+
+typedef struct fileHead{
+    int num;
+}fileHead;
+
+extern int systemStatus;
+extern bool isLog;
+extern int itemNum;
+extern travelItem *itemHead;
+extern fileHead *FileHead;
 
 
 #endif
