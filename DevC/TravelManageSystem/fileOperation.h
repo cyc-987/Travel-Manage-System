@@ -23,8 +23,12 @@ int deleteItem(travelItem*);
 
 //create an item based on the information given
 //return the point of the item
-travelItem* createItem(int ID, Date startDate, Date endDate, double price, 
+travelItem* createItem(int ID, char* name, Date startDate, Date endDate, double price, 
                 int numberReserved, int numberTotal, bool isReserved,
                 double rate, char* keyword, char* detail);
+
+//copy one item to another,but you need to set the ID
+//caution:the next item is set as NULL by default
+void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID);
 
 #endif

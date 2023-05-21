@@ -12,5 +12,6 @@
 
 #include "main.h"
 #include "fileOperation.h"
+#include "searchAndSort.h"
 
 #endif

@@ -38,6 +38,7 @@ extern bool isLog;
 extern int itemNum;
 extern travelItem *itemHead;
 extern fileHead *FileHead;
+extern travelItem *currentHead;
 
 
 #endif

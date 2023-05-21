@@ -78,13 +78,14 @@ int saveFile()
     return 0;
 }
 
-travelItem* createItem(int ID, Date startDate, Date endDate, double price, 
+travelItem* createItem(int ID, char* name, Date startDate, Date endDate, double price, 
                 int numberReserved, int numberTotal, bool isReserved,
                 double rate, char* keyword, char* detail)
 {
     travelItem *temp;
     temp = (travelItem*)malloc(sizeof(travelItem));
     temp->ID = ID;
+    strcpy(temp->name,name);
     temp->startDate = startDate;
     temp->endDate = endDate;
     temp->price = price;
@@ -153,4 +154,22 @@ int deleteItem(travelItem *itemToDelete)
     Log("item deleted successfully");
 
     return 0;
+}
+
+void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID)
+{
+    if(toBeCopy == NULL)copy = NULL;
+
+    copy->ID = ID;
+    strcpy(copy->name, toBeCopy->name);
+    copy->startDate = toBeCopy->startDate;
+    copy->endDate = toBeCopy->endDate;
+    copy->price = toBeCopy->price;
+    copy->numberReserved = toBeCopy->numberReserved;
+    copy->numberTotal = toBeCopy->numberTotal;
+    copy->isReserved = toBeCopy->isReserved;
+    copy->rate = toBeCopy->rate;
+    strcpy(copy->keyword,toBeCopy->keyword);
+    strcpy(copy->detail,toBeCopy->detail);
+    copy->nextItem = NULL;
 }
