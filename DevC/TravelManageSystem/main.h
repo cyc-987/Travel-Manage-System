@@ -40,5 +40,8 @@ extern travelItem *itemHead;
 extern fileHead *FileHead;
 extern travelItem *currentHead;
 
+enum buttonUid {searchButton,resetButton};
+enum menuListUid {file};
+
 
 #endif

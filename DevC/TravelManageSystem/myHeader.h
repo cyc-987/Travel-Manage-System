@@ -14,5 +14,6 @@
 #include "fileOperation.h"
 #include "searchAndSort.h"
 #include "display.h"
+#include "shape.h"
 
 #endif
