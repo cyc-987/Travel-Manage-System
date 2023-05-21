@@ -15,5 +15,6 @@
 #include "searchAndSort.h"
 #include "display.h"
 #include "shape.h"
+#include "mouseEvent.h"
 
 #endif

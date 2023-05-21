@@ -31,8 +31,8 @@ void drawSearchBar()
     MovePen(0,5.2);
     DrawLine(8,0);
 
-    drawButton(6.1, 5.25, 0.8, 0.4, "Search");
-    drawButton(7.1, 5.25, 0.8, 0.4, "Reset");
+    drawButton(6.1, 5.25, 0.8, 0.4, "Search",0,0,"");
+    drawButton(7.1, 5.25, 0.8, 0.4, "Reset",0,0,"");
 }
 
 void drawBasicWindow(int status)
@@ -56,8 +56,16 @@ void drawMyMenuBar(int status)
 
 }
 
-void drawButton(double startX, double startY, double w, double h, char* label)
-{
+void drawButton(double startX, double startY, double w, double h, char* label,int isFilled, double density, char* fillColor)
+{   
+    if(isFilled == 1) 
+    {
+        SetPenColor(fillColor);
+        StartFilledRegion(density);
+        drawSquare(startX,startY,w,h);
+        EndFilledRegion();
+        SetPenColor("Black");
+    }
     drawSquare(startX,startY,w,h);
     drawTextMiddle(startX,startX+w,startY,startY+h,label);
 }

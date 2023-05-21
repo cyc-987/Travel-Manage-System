@@ -15,6 +15,7 @@ void Main()
 	InitGraphics();
 	InitGUI();
 	
+	registerMouseEvent(myMouseEvent);
 	Log("initial complete");
 
 	initDisplay(systemStatus);

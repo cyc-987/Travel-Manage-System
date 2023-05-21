@@ -29,7 +29,7 @@ void drawSideWindow(int status);
 void drawSearchBar();
 
 //draw a button with label
-void drawButton(double startX, double startY, double w, double h, char* label);
+void drawButton(double startX, double startY, double w, double h, char* label,int isFilled, double density,char* fillColor);
 
 //print the text in middle of a square
 void drawTextMiddle(double x1, double x2, double y1, double y2, char* label);
