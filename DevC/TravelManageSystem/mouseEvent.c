@@ -14,7 +14,12 @@ void myMouseEvent (int x, int y, int button, int event)
     }else{
         drawButton(6.1, 5.25, 0.8, 0.4, "Search",1,0,"White");
     }
-
+    //reset button
+    if(isInRegion(mouseX,mouseY,7.1, 5.25, 0.8, 0.4)){
+        drawButton(7.1, 5.25, 0.8, 0.4, "Search",1,1,"Gray");
+    }else{
+        drawButton(7.1, 5.25, 0.8, 0.4, "Search",1,0,"White");
+    }
     //end of mouse on button
 }
 
