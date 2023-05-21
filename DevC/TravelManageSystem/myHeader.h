@@ -13,5 +13,6 @@
 #include "main.h"
 #include "fileOperation.h"
 #include "searchAndSort.h"
+#include "display.h"
 
 #endif
