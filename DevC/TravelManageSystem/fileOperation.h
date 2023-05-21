@@ -31,4 +31,7 @@ travelItem* createItem(int ID, char* name, Date startDate, Date endDate, double 
 //caution:the next item is set as NULL by default
 void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID);
 
+//create an empty item, but set the next item as NULL
+travelItem* createEmptyItem();
+
 #endif

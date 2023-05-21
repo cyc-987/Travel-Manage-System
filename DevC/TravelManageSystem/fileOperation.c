@@ -173,3 +173,11 @@ void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID)
     strcpy(copy->detail,toBeCopy->detail);
     copy->nextItem = NULL;
 }
+
+travelItem* createEmptyItem()
+{
+    travelItem *temp;
+    temp = (travelItem*)malloc(sizeof(travelItem));
+    temp->nextItem = NULL;
+    return temp;
+}
