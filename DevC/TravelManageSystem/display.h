@@ -29,6 +29,7 @@ void drawSideWindow(int status);
 void drawSearchBar();
 
 //draw a button with label
+//isfilled: choose to fill the button with color "fillColor" and density "density"
 void drawButton(double startX, double startY, double w, double h, char* label,int isFilled, double density,char* fillColor);
 
 //print the text in middle of a square
