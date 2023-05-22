@@ -1,18 +1,18 @@
 # Project: TraverManageSystem
-# Makefile created by Dev-C++ 5.11
+# Makefile created by Dev-C++ 5.5.3
 
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o ../compiled/searchAndSort.o ../compiled/display.o ../compiled/shape.o ../compiled/mouseEvent.o
 LINKOBJ  = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o ../compiled/searchAndSort.o ../compiled/display.o ../compiled/shape.o ../compiled/mouseEvent.o
-LIBS     = -L"D:/Dev-Cpp/MinGW64/lib32" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -mwindows -m32 -g3
-INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"../../libgraphics" -I"../../simpleGUI"
-CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"../../libgraphics" -I"../../simpleGUI"
+LIBS     = -L"D:/Dev-Cpp/MinGW32/lib" -L"D:/Dev-Cpp/MinGW32/mingw32/lib" -L"D:/YJL/浙大/2022-23春夏/c/newprogram" -static-libstdc++ -static-libgcc -mwindows -m32 -g3
+INCS     = -I"D:/Dev-Cpp/MinGW32/include" -I"D:/YJL/浙大/2022-23春夏/c/newprogram/libgraphics" -I"../../libgraphics" -I"../../simpleGUI"
+CXXINCS  = -I"D:/Dev-Cpp/MinGW32/include" -I"D:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.7.2/include/c++" -I"../../libgraphics" -I"../../simpleGUI"
 BIN      = ../compiled/1-drawsomething.exe
 CXXFLAGS = $(CXXINCS) -m32 -g3
 CFLAGS   = $(INCS) -m32 -g3
-RM       = rm.exe -f
+RM       = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -63,5 +63,5 @@ $(BIN): $(OBJ)
 ../compiled/shape.o: shape.c
 	$(CC) -c shape.c -o ../compiled/shape.o $(CFLAGS)
 
-../compiled/mouseEvent.o: mouseEvent.c
-	$(CC) -c mouseEvent.c -o ../compiled/mouseEvent.o $(CFLAGS)
+../compiled/mouseEvent.o: ../../../c大/Travel-Manage-System/DevC/TravelManageSystem/mouseEvent.c
+	$(CC) -c ../../../c大/Travel-Manage-System/DevC/TravelManageSystem/mouseEvent.c -o ../compiled/mouseEvent.o $(CFLAGS)

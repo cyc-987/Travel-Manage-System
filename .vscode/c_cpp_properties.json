@@ -4,14 +4,14 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "E:\\Study\\C\\Demo/**"
+                "D:\\YJL\\demo/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "D:\\Dev-Cpp\\MinGW64\\bin\\gcc"
+            "compilerPath": "D:\\Dev-Cpp\\MinGW32\\bin/gcc"
         }
     ],
     "version": 4
