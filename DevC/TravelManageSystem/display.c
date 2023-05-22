@@ -16,7 +16,48 @@ void initDisplay(int status)
 void drawMainWindow()
 {
     drawSearchBar();
-    
+}
+
+void drawDatabase(int page){
+    int i = 1;
+    int oldNum = (page-1)*5;
+    if( oldNum+1 <= itemNum ){ 
+        while( oldNum+i <= itemNum && i<=5){
+            drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
+            i++;
+        };
+    }else if(oldNum >= itemNum){
+        drawTextMiddle(0, 8, 0, 5.2, "No more data.");
+        return;
+    }
+}
+
+void drawRow(int id, double y1, double y2, int labelNum){
+    travelItem *ptr;
+    ptr = goThrough(id);
+    drawTextMiddle(0.2, 0.6, y1, y2, labelNum+'0');
+    drawTextMiddle(0.8, 3.6, y1, y2, ptr->name);
+    char *wholeDate[200];
+    sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
+        ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
+        ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
+    drawTextMiddle(3.8, 5.8, y1, y2, wholeDate);
+    char *price[100];
+    sprintf(price, "%d ￥", ptr->price);
+    drawTextMiddle(6, 6.8, y1, y2, price);
+    drawButton(7, y1+0.2, 0.8, 0.4, "more infor.", 0 , 0, "");
+}
+
+travelItem* goThrough(int num){
+    travelItem *ptr;
+    ptr = itemHead;
+    while (ptr != NULL)
+    {
+        if(ptr->ID == num)
+            return ptr;
+        ptr = ptr->nextItem;
+    }
+
 }
 
 void drawSideWindow(int status)

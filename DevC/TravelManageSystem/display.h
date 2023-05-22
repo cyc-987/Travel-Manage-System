@@ -34,4 +34,13 @@ void drawButton(double startX, double startY, double w, double h, char* label,in
 
 //print the text in middle of a square
 void drawTextMiddle(double x1, double x2, double y1, double y2, char* label);
+
+//draw the main database interface
+void drawDatabase(int page);
+
+//a midtern function of drawDatabase
+void drawRow(int id, double y1, double y2, int labelNum);
+
+//go through all the travelItems to find the one who has the exact ID
+travelItem* goThrough(int num); 
 #endif

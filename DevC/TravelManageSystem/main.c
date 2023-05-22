@@ -5,12 +5,12 @@ int systemStatus = 0;
 int itemNum = 0;
 travelItem *itemHead = NULL;
 fileHead *FileHead = NULL;
-
+int page = 1;
 
 
 void Main()
 {
-	SetWindowTitle("旅游管理系统");
+	SetWindowTitle("锟斤拷锟轿癸拷锟斤拷系统");
 	SetWindowSize(12,6);
 	InitGraphics();
 	InitGUI();
