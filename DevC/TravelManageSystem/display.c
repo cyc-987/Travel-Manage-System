@@ -43,7 +43,7 @@ void drawRow(int id, double y1, double y2, int labelNum){
         ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
     drawTextMiddle(3.8, 5.8, y1, y2, wholeDate);
     char *price[100];
-    sprintf(price, "%d ￥", ptr->price);
+    sprintf(price, "%d $", ptr->price);
     drawTextMiddle(6, 6.8, y1, y2, price);
     drawButton(7, y1+0.2, 0.8, 0.4, "more infor.", 0 , 0, "");
 }

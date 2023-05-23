@@ -5,6 +5,7 @@
 #include<string.h>
 #include<math.h>
 #include<stdlib.h>
+#include<ctype.h>
 
 #include "graphics.h"
 #include "extgraph.h"

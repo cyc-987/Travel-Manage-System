@@ -25,6 +25,7 @@ travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert)
         }
     }
 }
+
 travelItem* sortByID(travelItem * itemToBeSortHead)
 {
     travelItem *temp,*head,*temp2;
@@ -42,4 +43,58 @@ travelItem* sortByID(travelItem * itemToBeSortHead)
         normalInsertByID(head,temp);
         temp2 = temp2->nextItem;
     }
+}
+
+travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
+{
+    if(itemToBeSearched == NULL) return NULL;
+    char* lowwerKeyword = upperToLower(keyword);
+    travelItem* head = itemToBeSearched;
+
+    char *temp1,*temp2,*temp3;
+    travelItem* resultHead = NULL;
+    travelItem* resultTemp = resultHead;
+    travelItem* temp;
+    while(head->nextItem != NULL){
+        temp1 = head->name;
+        temp2 = head->keyword;
+        temp3 = head->detail;
+        temp1 = upperToLower(temp1);
+        temp2 = upperToLower(temp2);
+        temp3 = upperToLower(temp3);
+        if(strstr(temp1,lowwerKeyword) != NULL | 
+        strstr(temp2,lowwerKeyword) != NULL |
+        strstr(temp3,lowwerKeyword) != NULL){
+            if(resultHead == NULL){
+                resultHead = createEmptyItem();
+                itemCopy(resultHead,head,head->ID);
+                resultTemp = resultHead;
+            }else{
+                temp = createEmptyItem();
+                itemCopy(temp,head,head->ID);
+                resultTemp->nextItem = temp;
+                resultTemp = temp;
+            }
+        }
+        head = head->nextItem;
+    }
+    return resultHead;
+}
+
+char* upperToLower(char* toBeConvert)
+{
+    char temp;
+    char* result = (char*)malloc(sizeof(toBeConvert));
+    result = NULL;
+    char* resultTemp = result;
+    char* toBeConvertTemp = toBeConvert;
+    temp = *(toBeConvertTemp);
+    while(temp != '\0'){
+        temp = tolower(temp);
+        *(resultTemp) = temp;
+        resultTemp ++;
+        toBeConvertTemp ++;
+    }
+    *(++resultTemp) = '\0';
+    return result;
 }

@@ -10,7 +10,7 @@ int page = 1;
 
 void Main()
 {
-	SetWindowTitle("���ι���ϵͳ");
+	SetWindowTitle("Travel Manage System");
 	SetWindowSize(12,6);
 	InitGraphics();
 	InitGUI();
