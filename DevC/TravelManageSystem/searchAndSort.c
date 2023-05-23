@@ -26,24 +26,6 @@ travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert)
     }
 }
 
-travelItem* sortByID(travelItem * itemToBeSortHead)
-{
-    travelItem *temp,*head,*temp2;
-    if(itemToBeSortHead == NULL)return NULL;
-    else{
-        head = createEmptyItem();
-        itemCopy(head,itemToBeSortHead,itemToBeSortHead->ID);
-        temp2 = itemToBeSortHead;
-        temp2 = temp2->nextItem;
-    }
-
-    while(temp2 != NULL){
-        temp = createEmptyItem();
-        itemCopy(temp,temp2,temp2->ID);
-        normalInsertByID(head,temp);
-        temp2 = temp2->nextItem;
-    }
-}
 
 travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 {
@@ -97,4 +79,75 @@ char* upperToLower(char* toBeConvert)
     }
     *(++resultTemp) = '\0';
     return result;
+}
+
+travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)
+{
+    travelItem *ptr, *ptr1, *ptr2;
+
+    ptr2 = Head;
+    ptr = itemToBeInsert;
+
+    if(Head == NULL){
+        Head = ptr;
+        Head->nextItem = NULL;
+    }else{
+        while((ptr->price>ptr2->price) && (ptr2->nextItem != NULL)){
+            ptr1 = ptr2;
+            ptr2 = ptr2->nextItem;
+        } 
+        if(ptr->price<=ptr2->price){
+            if(Head == ptr2) Head = ptr;
+            else ptr1->nextItem = ptr;
+            ptr->nextItem = ptr2;
+        }else{
+            ptr2->nextItem = ptr;
+            ptr->nextItem = NULL;
+        }
+    }
+}
+
+travelItem* sort(travelItem * itemToBeSortHead, travelItem*(*func)(travelItem *Head, travelItem *itemToBeInsert))
+{
+    travelItem *temp,*head,*temp2;
+    if(itemToBeSortHead == NULL)return NULL;
+    else{
+        head = createEmptyItem();
+        itemCopy(head,itemToBeSortHead,itemToBeSortHead->ID);
+        temp2 = itemToBeSortHead;
+        temp2 = temp2->nextItem;
+    }
+
+    while(temp2 != NULL){
+        temp = createEmptyItem();
+        itemCopy(temp,temp2,temp2->ID);
+        func(head,temp);
+        temp2 = temp2->nextItem;
+    }
+}
+
+travelItem* normalInsertByRate(travelItem *Head, travelItem *itemToBeInsert)
+{
+    travelItem *ptr, *ptr1, *ptr2;
+
+    ptr2 = Head;
+    ptr = itemToBeInsert;
+
+    if(Head == NULL){
+        Head = ptr;
+        Head->nextItem = NULL;
+    }else{
+        while((ptr->rate>ptr2->rate) && (ptr2->nextItem != NULL)){
+            ptr1 = ptr2;
+            ptr2 = ptr2->nextItem;
+        } 
+        if(ptr->rate<=ptr2->rate){
+            if(Head == ptr2) Head = ptr;
+            else ptr1->nextItem = ptr;
+            ptr->nextItem = ptr2;
+        }else{
+            ptr2->nextItem = ptr;
+            ptr->nextItem = NULL;
+        }
+    }
 }

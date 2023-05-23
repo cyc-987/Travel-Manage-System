@@ -11,6 +11,7 @@ void myMouseEvent (int x, int y, int button, int event)
     //search button
     if(isInRegion(mouseX,mouseY,6.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
         drawButton(6.1, 5.25, 0.8, 0.4, "Search",1,1,"Violet");
+        Log("push search");
     }else if(isInRegion(mouseX,mouseY,6.1, 5.25, 0.8, 0.4)){
         drawButton(6.1, 5.25, 0.8, 0.4, "Search",1,1,"Light Gray");
     }else{
@@ -18,7 +19,8 @@ void myMouseEvent (int x, int y, int button, int event)
     }
     //reset button
     if(isInRegion(mouseX,mouseY,7.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
-        drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,1,"Violets");
+        drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,1,"Violet");
+        Log("push reset");
     }else if(isInRegion(mouseX,mouseY,7.1, 5.25, 0.8, 0.4)){
         drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,1,"Light Gray");
     }else{

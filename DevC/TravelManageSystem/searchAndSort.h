@@ -3,11 +3,13 @@
 #ifndef _SEARCH_AND_SORT_H_
 #define _SEARCH_AND_SORT_H_
 
-//a midtern func used by "sortByID"
+//these are three functions tobe insert to "sort" function
 travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert);
+travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert);
+travelItem* normalInsertByRate(travelItem *Head, travelItem *itemToBeInsert);
 
-//sort the linked list by its ID
-travelItem* sortByID(travelItem * itemToBeSortHead);
+//a multifunc sort function
+travelItem* sort(travelItem * itemToBeSortHead, travelItem*(*func)(travelItem *Head, travelItem *itemToBeInsert));
 
 //search the keyword in "name", "keyword" and "details"
 //dont need to worry about upper and lowwer characters
