@@ -18,6 +18,7 @@ typedef struct travelItem{
     Date endDate;
 
     double price;
+    double score;
     int numberReserved;
     int numberTotal;
     bool isReserved;

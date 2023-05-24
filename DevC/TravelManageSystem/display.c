@@ -9,7 +9,7 @@ void initDisplay(int status)
         drawSideWindow(0);
     }else if(status == 1)
     {
-
+        drawSideWindow(1);
     }
 }
 
@@ -64,7 +64,32 @@ void drawSideWindow(int status)
 {
     if(status == 0){
         drawTextMiddle(8,12,0,5.7,"Nothing to display.");
+    }else if(status == 1){
+        /*drawDetails(ID)*/
+        drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "");
     }
+}
+
+void drawDetails(int id)
+{
+    travelItem *ptr;
+    ptr = goThrough(id);
+    drawTextMiddle(8.0,12.0,4.5,5.5,ptr->name);
+    char *wholeDate[200];
+    sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
+        ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
+        ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);
+    drawTextMiddle(8.0,12.0,4.0,4.5,wholeDate);
+    char *price[20];
+    sprintf(price,"$%d",ptr->price);
+    drawTextMiddle(8.0,12.0,3.5,4.0,price);
+    char *score[50];
+    sprintf(score,"%d/5 wondeful",ptr->score);
+    drawTextMiddle(8.0,12.0,3.0,3.5,score);
+    char *number[100];
+    sprintf(number,"%d//%d",ptr->numberReserved,ptr->numberTotal);
+    drawTextMiddle(8.0,12.0,2.5,3.0,number);
+    drawTextMiddle(8.0,12.0,1.5,2.5,ptr->keyword);
 }
 
 void drawSearchBar()
