@@ -7,9 +7,14 @@ void initDisplay(int status)
         drawBasicWindow(status);
         drawMainWindow();
         drawSideWindow(0);
+        drawDatabase(0 , page);
     }else if(status == 1)
     {
-        drawSideWindow(1);
+        drawBasicWindow(status);
+        drawMainWindow();
+        drawSideWindow(0);
+        drawDatabase(1 , page);
+		drawSideWindow(1);
     }
 }
 
@@ -18,24 +23,30 @@ void drawMainWindow()
     drawSearchBar();
 }
 
-void drawDatabase(int page){
+void drawDatabase(int status, int page){
     int i = 1;
     int oldNum = (page-1)*5;
-    if( oldNum+1 <= itemNum ){ 
-        while( oldNum+i <= itemNum && i<=5){
-            drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
-            i++;
-        };
-    }else if(oldNum >= itemNum){
-        drawTextMiddle(0, 8, 0, 5.2, "No more data.");
-        return;
+    if (status==0){
+		drawTextMiddle(0, 8, 0, 5.2, "No more data.");
+	}else if(status==1){
+		if( oldNum+1 <= itemNum ){ 
+	        while( oldNum+i <= itemNum && i<=5){
+	            drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
+	            i++;
+	        };
+	    }else if(oldNum >= itemNum){
+	        drawTextMiddle(0, 8, 0, 5.2, "No more data.");
+	        return;
+	    }
     }
 }
 
 void drawRow(int id, double y1, double y2, int labelNum){
     travelItem *ptr;
     ptr = goThrough(id);
-    drawTextMiddle(0.2, 0.6, y1, y2, labelNum+'0');
+    char *number[100];
+    sprintf(number, "%d", labelNum);
+    drawTextMiddle(0.2, 0.6, y1, y2, number);
     drawTextMiddle(0.8, 3.6, y1, y2, ptr->name);
     char *wholeDate[200];
     sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
@@ -78,7 +89,7 @@ void drawDetails(int id)
     char *wholeDate[200];
     sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
         ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
-        ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);
+        ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
     drawTextMiddle(8.0,12.0,4.0,4.5,wholeDate);
     char *price[20];
     sprintf(price,"$%d",ptr->price);

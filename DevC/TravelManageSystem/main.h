@@ -40,6 +40,7 @@ extern int itemNum;
 extern travelItem *itemHead;
 extern fileHead *FileHead;
 extern travelItem *currentHead;
+extern page;
 
 enum buttonUid {searchButton,resetButton};
 enum menuListUid {file};
