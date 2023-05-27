@@ -6,15 +6,16 @@ void initDisplay(int status)
     {
         drawBasicWindow(status);
         drawMainWindow();
-        drawSideWindow(0);
+        sidebarStatus = 0;
+        drawSideWindow(sidebarStatus);
         drawDatabase(0 , page);
     }else if(status == 1)
     {
         drawBasicWindow(status);
         drawMainWindow();
-        drawSideWindow(0);
+        sidebarStatus = 0;
+        drawSideWindow(sidebarStatus);
         drawDatabase(1 , page);
-		drawSideWindow(1);
     }
 }
 
@@ -75,10 +76,91 @@ void drawSideWindow(int status)
 {
     if(status == 0){
         drawTextMiddle(8,12,0,5.7,"Nothing to display.");
-    }else if(status == 1){
+    }else if(status == 1 | status == 2){
         /*drawDetails(ID)*/
         drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "");
+    }else if(status == 3){
+        clearSideWindow();
+        currentItem = drawInsert();
+
     }
+}
+
+void clearSideWindow()
+{
+    drawButton(8, 0, 4, 5.7, "",1, 1,"White");
+}
+
+travelItem* drawInsert()
+{
+    //init
+    travelItem* item = NULL;
+    item = createEmptyItem();
+    Log("insert");
+
+    //date temp
+    char sdy[5],sdm[3],sdd[3],edy[5],edm[3],edd[3];
+    sdy[0] = sdm[0] = sdd[0] = edy[0] = edm[0] = edd[0] = '\0';
+
+    //draw input
+    textbox(GenUIID(0), 8, 4.5, 4, 1, item->name, 100);
+    char t = '-';
+    char to[3] = "to";
+    drawTextMiddle(9.75,10.25,4.0,4.5,to); 
+    if(textbox(GenUIID(0), 8.25, 4.0, 0.85, 0.5, sdy, 5)){
+        item->startDate.year = atoi(sdy);
+    }
+    drawTextMiddle(8.25+0.85,8.25+0.85+0.1,4.0,4.5,t);
+    if(textbox(GenUIID(0), 9.2, 4.0, 0.25, 0.5, sdm, 3)){
+        item->startDate.month = atoi(sdm);
+    }
+    drawTextMiddle(9.4,9.5,4.0,4.5,t);
+    if(textbox(GenUIID(0), 9.5, 4.0, 0.25, 0.5, sdd, 3)){
+        item->startDate.date = atoi(sdd);
+    }
+    Log("debug");
+
+    if(textbox(GenUIID(0), 10.25, 4.0, 0.85, 0.5, edy, 5)){
+        item->startDate.year = atoi(edy);
+    }
+    drawTextMiddle(10.25+0.85,10.25+0.85+0.1,4.0,4.5,t);
+    if(textbox(GenUIID(0), 11.25, 4.0, 0.25, 0.5, edm, 3)){
+        item->startDate.month = atoi(edm);
+    }
+    drawTextMiddle(11.45,11.55,4.0,4.5,t);
+    if(textbox(GenUIID(0), 11.55, 4.0, 0.25, 0.5, edd, 3)){
+        item->startDate.date = atoi(edd);
+    }
+
+    char price[10];
+    price[0] = '\0';
+    if(textbox(GenUIID(0), 8, 3.5, 4, 0.5, price, 10)){
+        item->price = atof(price);
+    }
+
+    char score[10];
+    score[0] = '\0';
+    if(textbox(GenUIID(0), 8, 3.0, 4, 0.5, score, 10)){
+        item->score = atof(score);
+    }
+
+    char reserved[10];
+    reserved[0] = '\0';
+    if(textbox(GenUIID(0), 8, 2.5, 1.75, 0.5, reserved, 10)){
+        item->numberReserved = atoi(reserved);
+    }
+    drawTextMiddle(9.75,10.25,2.5,3.0,"//");
+    char total[10];
+    total[0] = '\0';
+    if(textbox(GenUIID(0), 10.25, 2.5, 1.75, 0.5, total, 10)){
+        item->numberTotal = atoi(total);
+    }
+    textbox(GenUIID(0), 8, 1.5, 4, 1, item->keyword, 50);
+    //end of draw input
+
+    //draw apply button
+    drawButton(8.5, 0.3, 1, 0.4, "Apply", 0, 0, "White");
+    drawButton(10.5, 0.3, 1, 0.4, "Cancel", 0, 0, "White");
 }
 
 void drawDetails(int id)
@@ -142,6 +224,12 @@ void drawMyMenuBar(int status)
     drawButton(0, 5.7, 0.75, 0.3, "Refresh",0, 0,"White");
     drawButton(0.75, 5.7, 0.75, 0.3, "Save",0, 0,"White");
     drawButton(1.5, 5.7, 0.75, 0.3, "Change",0, 0,"White");
+
+    //special buttons
+    if(systemStatus == 1 && sidebarStatus != 3){
+        drawButton(2.25, 5.7, 0.75, 0.3, "Add",0, 0,"White");
+    }
+    
 
 }
 

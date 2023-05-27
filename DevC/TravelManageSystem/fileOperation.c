@@ -181,6 +181,18 @@ travelItem* createEmptyItem()
 {
     travelItem *temp;
     temp = (travelItem*)malloc(sizeof(travelItem));
+    temp->ID = GenUIID(0);
+    temp->name[0] = '\0';
+    Date tempDate = {2023,0,0};
+    temp->startDate = tempDate;
+    temp->endDate = tempDate;
+    temp->price = 0;
+    temp->numberReserved = 0;
+    temp->numberTotal = 0;
+    temp->isReserved = FALSE;
+    temp->rate = 0;
+    strcpy(temp->keyword,"");
+    strcpy(temp->detail,"");
     temp->nextItem = NULL;
     return temp;
 }

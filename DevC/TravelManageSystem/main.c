@@ -2,8 +2,10 @@
 
 bool isLog = TRUE;
 int systemStatus = 0;
+int sidebarStatus = 0;
 int itemNum = 0;
 travelItem *itemHead = NULL;
+travelItem *currentItem = NULL;
 fileHead *FileHead = NULL;
 int page = 1;
 

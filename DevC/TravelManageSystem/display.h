@@ -43,4 +43,8 @@ void drawRow(int id, double y1, double y2, int labelNum);
 
 //go through all the travelItems to find the one who has the exact ID
 travelItem* goThrough(int num); 
+
+travelItem* drawInsert();
+
+void clearSideWindow();
 #endif
