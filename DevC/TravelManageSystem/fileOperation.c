@@ -64,6 +64,9 @@ int saveFile()
         return 1;
         }//save file failed
 
+    if(FileHead == NULL){
+        FileHead = (fileHead*)malloc(sizeof(fileHead));
+    }
     fwrite(FileHead,sizeof(fileHead),itemNum,fp);
     int count;
     travelItem *temp = itemHead;

@@ -14,6 +14,8 @@ void Main()
 	SetWindowSize(12,6);
 	InitGraphics();
 	InitGUI();
+
+	DefineColor("LightBlue",0.01176, 0.60784, 0.89804);
 	
 	registerMouseEvent(myMouseEvent);
 	Log("initial complete");

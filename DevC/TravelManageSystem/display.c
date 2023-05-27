@@ -131,6 +131,18 @@ void drawMyMenuBar(int status)
 
     //draw menu list
 
+    //draw usr
+    if(status == 0){
+        drawTextMiddle(10,12,5.7,6,"Current Usr: Customer");
+    }else if(status == 1){
+        drawTextMiddle(10,12,5.7,6,"Current Usr: Agency");
+    }
+
+    //left buttons
+    drawButton(0, 5.7, 0.75, 0.3, "Refresh",0, 0,"White");
+    drawButton(0.75, 5.7, 0.75, 0.3, "Save",0, 0,"White");
+    drawButton(1.5, 5.7, 0.75, 0.3, "Change",0, 0,"White");
+
 }
 
 void drawButton(double startX, double startY, double w, double h, char* label,int isFilled, double density, char* fillColor)
