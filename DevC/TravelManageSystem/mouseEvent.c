@@ -6,6 +6,7 @@ void myMouseEvent (int x, int y, int button, int event)
     mouseX = ScaleXInches(x);
 	mouseY = ScaleYInches(y);
     uiGetMouse(x,y,button,event);
+    initDisplay(systemStatus);
 
     //mouse on button
 
@@ -108,6 +109,8 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,2.25, 5.7, 0.75, 0.3) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(2.25, 5.7, 0.75, 0.3, "Add",1,1,"LightBlue");
             clearSideWindow();
+            //init
+            currentItem = createEmptyItem();
             sidebarStatus = 3;
             drawSideWindow(sidebarStatus);
             Log("push add");

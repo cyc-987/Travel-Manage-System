@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=4
 CompilerSettings=0000000100000000001000000
-UnitCount=32
+UnitCount=34
 
 [VersionInfo]
 Major=1
@@ -362,6 +362,26 @@ BuildCmd=
 
 [Unit32]
 FileName=mouseEvent.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit33]
+FileName=otherEvents.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit34]
+FileName=otherEvents.h
 CompileCpp=0
 Folder=
 Compile=1

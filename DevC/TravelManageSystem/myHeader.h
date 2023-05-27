@@ -1,6 +1,9 @@
 #ifndef _MY_HEADER_H_
 #define _MY_HEADER_H_
 
+#include <windows.h>
+#include <winuser.h>
+
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
