@@ -5,6 +5,7 @@ void myMouseEvent (int x, int y, int button, int event)
     double mouseX, mouseY;
     mouseX = ScaleXInches(x);
 	mouseY = ScaleYInches(y);
+    uiGetMouse(x,y,button,event);
 
     //mouse on button
 

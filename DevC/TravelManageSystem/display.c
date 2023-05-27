@@ -6,14 +6,12 @@ void initDisplay(int status)
     {
         drawBasicWindow(status);
         drawMainWindow();
-        sidebarStatus = 0;
         drawSideWindow(sidebarStatus);
         drawDatabase(0 , page);
     }else if(status == 1)
     {
         drawBasicWindow(status);
         drawMainWindow();
-        sidebarStatus = 0;
         drawSideWindow(sidebarStatus);
         drawDatabase(1 , page);
     }
@@ -103,31 +101,32 @@ travelItem* drawInsert()
     sdy[0] = sdm[0] = sdd[0] = edy[0] = edm[0] = edd[0] = '\0';
 
     //draw input
-    textbox(GenUIID(0), 8, 4.5, 4, 1, item->name, 100);
+    textbox(GenUIID(0), 8, 4.5, 4, 1, item->name, sizeof(item->name));
     char t = '-';
     char to[3] = "to";
     drawTextMiddle(9.75,10.25,4.0,4.5,to); 
-    if(textbox(GenUIID(0), 8.25, 4.0, 0.85, 0.5, sdy, 5)){
+    if(textbox(GenUIID(0), 8.25, 4.0, 0.85, 0.5, sdy, sizeof(sdy))){
         item->startDate.year = atoi(sdy);
     }
-    drawTextMiddle(8.25+0.85,8.25+0.85+0.1,4.0,4.5,t);
+    drawTextMiddle(8.25+0.85,8.25+0.85+0.1,4.0,4.5,"-");
     if(textbox(GenUIID(0), 9.2, 4.0, 0.25, 0.5, sdm, 3)){
         item->startDate.month = atoi(sdm);
     }
-    drawTextMiddle(9.4,9.5,4.0,4.5,t);
+    Log("debug");
+    drawTextMiddle(9.4,9.5,4.0,4.5,"-");
     if(textbox(GenUIID(0), 9.5, 4.0, 0.25, 0.5, sdd, 3)){
         item->startDate.date = atoi(sdd);
     }
-    Log("debug");
+    
 
     if(textbox(GenUIID(0), 10.25, 4.0, 0.85, 0.5, edy, 5)){
         item->startDate.year = atoi(edy);
     }
-    drawTextMiddle(10.25+0.85,10.25+0.85+0.1,4.0,4.5,t);
+    drawTextMiddle(10.25+0.85,10.25+0.85+0.1,4.0,4.5,"-");
     if(textbox(GenUIID(0), 11.25, 4.0, 0.25, 0.5, edm, 3)){
         item->startDate.month = atoi(edm);
     }
-    drawTextMiddle(11.45,11.55,4.0,4.5,t);
+    drawTextMiddle(11.45,11.55,4.0,4.5,"-");
     if(textbox(GenUIID(0), 11.55, 4.0, 0.25, 0.5, edd, 3)){
         item->startDate.date = atoi(edd);
     }

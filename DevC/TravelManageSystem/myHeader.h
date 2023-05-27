@@ -17,5 +17,6 @@
 #include "display.h"
 #include "shape.h"
 #include "mouseEvent.h"
+#include "otherEvents.h"
 
 #endif

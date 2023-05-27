@@ -20,6 +20,8 @@ void Main()
 	DefineColor("LightBlue",0.01176, 0.60784, 0.89804);
 	
 	registerMouseEvent(myMouseEvent);
+	registerCharEvent(CharEventProcess);        
+	registerKeyboardEvent(KeyboardEventProcess); 
 	Log("initial complete");
 
 	initDisplay(systemStatus);

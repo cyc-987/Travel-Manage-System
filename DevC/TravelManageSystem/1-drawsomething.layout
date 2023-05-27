@@ -6,8 +6,8 @@ LeftChar=1
 Open=0
 Top=0
 [Editor_19]
-CursorCol=21
-CursorRow=4
+CursorCol=14
+CursorRow=8
 TopLine=1
 LeftChar=1
 Open=1
@@ -20,8 +20,8 @@ LeftChar=1
 Open=0
 Top=0
 [Editors]
-Order=19,27,26,23
-Focused=26
+Order=19
+Focused=19
 [Editor_20]
 CursorCol=1
 CursorRow=1
@@ -51,9 +51,9 @@ LeftChar=1
 Open=0
 Top=0
 [Editor_26]
-CursorCol=1
-CursorRow=81
-TopLine=51
+CursorCol=13
+CursorRow=47
+TopLine=17
 LeftChar=1
 Open=1
 Top=0
