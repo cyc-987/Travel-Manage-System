@@ -97,8 +97,7 @@ void drawInsert(travelItem* item)
     //Log("insert");
 
     //date temp
-    static char sdy[5],sdm[3],sdd[3],edy[5],edm[3],edd[3];
-    sdy[0] = sdm[0] = sdd[0] = edy[0] = edm[0] = edd[0] = '\0';
+    static char sdy[5] = "2023",sdm[3] = "",sdd[3] = "",edy[5] = "2023",edm[3] = "",edd[3] = "";
 
     //draw input
     textbox(GenUIID(0), 8, 4.5, 4, 1, item->name, sizeof(item->name));
@@ -135,27 +134,23 @@ void drawInsert(travelItem* item)
         item->startDate.date = atoi(edd);
     }
 
-    static char price[10];
-    price[0] = '\0';
+    static char price[10] = "0";
     if(textbox(GenUIID(0), 8, 3.5, 4, 0.5, price, 10)){
         item->price = atof(price);
     }
 
-    static char score[10];
-    score[0] = '\0';
+    static char score[10] = "0";
     if(textbox(GenUIID(0), 8, 3.0, 4, 0.5, score, 10)){
         item->score = atof(score);
     }
 
-    static char reserved[10];
-    reserved[0] = '\0';
+    static char reserved[10] = "0";
     if(textbox(GenUIID(0), 8, 2.5, 1.75, 0.5, reserved, 10)){
         item->numberReserved = atoi(reserved);
     }
     SetPenColor("Black");
     drawTextMiddle(9.75,10.25,2.5,3.0,"//");
-    static char total[10];
-    total[0] = '\0';
+    static char total[10] = "0";
     if(textbox(GenUIID(0), 10.25, 2.5, 1.75, 0.5, total, 10)){
         item->numberTotal = atoi(total);
     }
