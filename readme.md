@@ -5,6 +5,6 @@
 
 ## Pics
 - mainWindow
-![](readmepics\MainWindow.PNG)
+![](/readmepics/MainWindow.PNG)
 - insert mode
-![](readmepics\insetMode.PNG)
+![](/readmepics/insetMode.PNG)
