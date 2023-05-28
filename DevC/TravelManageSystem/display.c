@@ -12,8 +12,11 @@ void initDisplay(int status)
     {
         drawBasicWindow(status);
         drawMainWindow();
+        //Log("test point");
         drawSideWindow(sidebarStatus);
+        Log("test point");
         drawDatabase(1 , page);
+        //Log("test point");
         if(sidebarStatus == 3){
 
         }

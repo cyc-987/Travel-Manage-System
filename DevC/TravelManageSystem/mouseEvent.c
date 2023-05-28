@@ -89,10 +89,10 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"LightBlue");
             Log("push apply");
             addItem(currentItem);
-            Log("apply return success");
+            //Log("apply return success");
             sidebarStatus = 0;
             initDisplay(systemStatus);
-            Log("init display success");
+            //Log("init display success");
         }else if(isInRegion(mouseX,mouseY,8.5, 0.3, 1, 0.4)){
             drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"Light Gray");
         }else{
