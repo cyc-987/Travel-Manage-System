@@ -156,6 +156,7 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"White");
         }
     }
+    //end of edit button
 
     //user,reserve button
     if(systemStatus == 0 && sidebarStatus == 1){
