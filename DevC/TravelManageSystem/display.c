@@ -25,6 +25,10 @@ void initDisplay(int status)
         DisplayClear();
         drawBasicWindow(status);
         drawInsert(currentItem);
+    }else if(status == 3){
+        DisplayClear();
+        drawBasicWindow(status);
+        drawEdit(currentItem);
     }
 }
 
@@ -87,19 +91,28 @@ void drawSideWindow(int status)
 {
     if(status == 0){
         drawTextMiddle(8,12,0,5.7,"Nothing to display.");
-    }else if(status == 1 | status == 2){
-        /*drawDetails(ID)*/
-        drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "");
+    }else if(status == 1 ){
+        drawDetails(currentItem);
+        drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "White");
+    }else if(status == 2){
+        drawDetails(currentItem);
+        drawButton(9.1, 0.3, 1.8, 0.4, "Edit", 0, 0, "White");
     }else if(status == 3){
         clearSideWindow();
         drawInsert(currentItem);
-
     }
 }
 
 void clearSideWindow()
 {
     drawButton(8, 0, 4, 5.7, "",1, 1,"White");
+}
+
+void drawEdit(travelItem* item)
+{
+    SetPenColor("Black");
+    drawButton(8.5, 0.3, 1, 0.4, "Save", 0, 0, "White");
+    drawButton(10.5, 0.3, 1, 0.4, "Delete", 0, 0, "White");
 }
 
 void drawInsert(travelItem* item)
@@ -191,10 +204,9 @@ void drawInsert(travelItem* item)
     drawButton(10.5, 0.3, 1, 0.4, "Cancel", 0, 0, "White");
 }
 
-void drawDetails(int id)
+void drawDetails(travelItem* item)
 {
-    travelItem *ptr;
-    ptr = goThrough(id);
+    travelItem *ptr=item;
     drawTextMiddle(8.0,12.0,4.5,5.5,ptr->name);
     char *wholeDate[200];
     sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
@@ -210,7 +222,8 @@ void drawDetails(int id)
     char *number[100];
     sprintf(number,"%d//%d",ptr->numberReserved,ptr->numberTotal);
     drawTextMiddle(8.0,12.0,2.5,3.0,number);
-    drawTextMiddle(8.0,12.0,1.5,2.5,ptr->keyword);
+    drawTextMiddle(8.0,12.0,2.0,2.5,ptr->keyword);
+    drawTextMiddle(8.0,12.0,1.0,2.0,ptr->detail);
 }
 
 void drawSearchBar()
@@ -230,7 +243,7 @@ void drawBasicWindow(int status)
         //middle line
         MovePen(8,5.7);
         DrawLine(0,-5.7);
-    }else if(status == 3){//insert mode
+    }else if(status == 2){//insert mode
         //draw nothing
     }
 
@@ -293,3 +306,4 @@ void drawTextMiddle(double x1, double x2, double y1, double y2, char* label)
     MovePen(x,y);
     DrawTextString(label);
 }
+
