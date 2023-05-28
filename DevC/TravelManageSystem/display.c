@@ -107,64 +107,82 @@ void drawInsert(travelItem* item)
     //Log("insert");
 
     //date temp
-    static char sdy[5] = "2023",sdm[3] = "",sdd[3] = "",edy[5] = "2023",edm[3] = "",edd[3] = "";
+    static char sdy[5] = "sy",sdm[3] = "m",sdd[3] = "d",edy[5] = "ey",edm[3] = "m",edd[3] = "d";
 
     //draw input
-    textbox(GenUIID(0), 8, 4.5, 4, 1, item->name, sizeof(item->name));
-    SetPenColor("Black");
-    char to[3] = "to";
-    drawTextMiddle(9.75,10.25,4.0,4.5,to); 
-    if(textbox(GenUIID(0), 8.25, 4.0, 0.85, 0.5, sdy, sizeof(sdy))){
+    //id input
+    static char id[5] = "ID";
+    if(textbox(GenUIID(0), 0.5, 4.65, 1, 0.7, id, sizeof(id))){
+        item->ID = atoi(id);
+    }
+
+    //name input
+    strcpy(item->name,"name");
+    textbox(GenUIID(0), 2.5, 4.65, 2, 0.7, item->name, sizeof(item->name));
+
+    //start date
+    if(textbox(GenUIID(0), 0.5, 3.65, 0.5, 0.7, sdy, sizeof(sdy))){
         item->startDate.year = atoi(sdy);
     }
     SetPenColor("Black");
-    drawTextMiddle(8.25+0.85,8.25+0.85+0.1,4.0,4.5,"-");
-    if(textbox(GenUIID(0), 9.2, 4.0, 0.25, 0.5, sdm, 3)){
+    drawTextMiddle(1,1.5,3.5,4.5,"-");
+    if(textbox(GenUIID(0), 1.5, 3.65, 0.5, 0.7, sdm, sizeof(sdm))){
         item->startDate.month = atoi(sdm);
     }
-    //Log("debug");
     SetPenColor("Black");
-    drawTextMiddle(9.4,9.5,4.0,4.5,"-");
-    if(textbox(GenUIID(0), 9.5, 4.0, 0.25, 0.5, sdd, 3)){
+    drawTextMiddle(2,2.5,3.5,4.5,"-");
+    if(textbox(GenUIID(0), 2.5, 3.65, 0.5, 0.7, sdd, sizeof(sdd))){
         item->startDate.date = atoi(sdd);
     }
     
-
-    if(textbox(GenUIID(0), 10.25, 4.0, 0.85, 0.5, edy, 5)){
+    //end date
+    if(textbox(GenUIID(0), 0.5, 2.65, 0.5, 0.7, edy, sizeof(edy))){
         item->startDate.year = atoi(edy);
     }
     SetPenColor("Black");
-    drawTextMiddle(10.25+0.85,10.25+0.85+0.1,4.0,4.5,"-");
-    if(textbox(GenUIID(0), 11.25, 4.0, 0.25, 0.5, edm, 3)){
+    drawTextMiddle(1,1.5,2.5,3.5,"-");
+    if(textbox(GenUIID(0), 1.5, 2.65, 0.5, 0.7, edm, sizeof(edm))){
         item->startDate.month = atoi(edm);
     }
     SetPenColor("Black");
-    drawTextMiddle(11.45,11.55,4.0,4.5,"-");
-    if(textbox(GenUIID(0), 11.55, 4.0, 0.25, 0.5, edd, 3)){
+    drawTextMiddle(2,2.5,2.5,3.5,"-");
+    if(textbox(GenUIID(0), 2.5, 2.65, 0.5, 0.7, edd, 3)){
         item->startDate.date = atoi(edd);
     }
 
-    static char price[10] = "0";
-    if(textbox(GenUIID(0), 8, 3.5, 4, 0.5, price, 10)){
+    //price,etc
+    static char price[10] = "price";
+    if(textbox(GenUIID(0), 0.5, 1.65, 1, 0.7, price, sizeof(price))){
         item->price = atof(price);
     }
 
-    static char score[10] = "0";
-    if(textbox(GenUIID(0), 8, 3.0, 4, 0.5, score, 10)){
+    static char score[10] = "score";
+    if(textbox(GenUIID(0), 2.5, 1.65, 1, 0.7, score, sizeof(score))){
         item->score = atof(score);
     }
 
-    static char reserved[10] = "0";
-    if(textbox(GenUIID(0), 8, 2.5, 1.75, 0.5, reserved, 10)){
+    static char rate[10] = "rate";
+    if(textbox(GenUIID(0), 4.5, 1.65, 1, 0.7, rate, sizeof(rate))){
+        item->rate = atof(rate);
+    }
+
+    //reserved and total numbers
+    static char reserved[10] = "reserved";
+    if(textbox(GenUIID(0), 0.5, 0.65, 1, 0.7, reserved, sizeof(reserved))){
         item->numberReserved = atoi(reserved);
     }
     SetPenColor("Black");
-    drawTextMiddle(9.75,10.25,2.5,3.0,"//");
-    static char total[10] = "0";
-    if(textbox(GenUIID(0), 10.25, 2.5, 1.75, 0.5, total, 10)){
+    drawTextMiddle(1.5,2.5,0.5,1.5,"//");
+    static char total[10] = "total";
+    if(textbox(GenUIID(0), 2.5, 0.65, 1, 0.7, total, sizeof(total))){
         item->numberTotal = atoi(total);
     }
-    textbox(GenUIID(0), 8, 1.5, 4, 1, item->keyword, 50);
+
+    //keyword & detail
+    strcpy(item->keyword,"keyword");
+    strcpy(item->detail,"detail");
+    textbox(GenUIID(0), 6.5, 3.5, 5, 2, item->keyword, sizeof(item->keyword));
+    textbox(GenUIID(0), 6.5, 1, 5, 2, item->detail, sizeof(item->detail));
     //end of draw input
 
     //draw apply button

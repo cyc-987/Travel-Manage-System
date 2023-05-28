@@ -182,7 +182,7 @@ travelItem* createEmptyItem()
     travelItem *temp;
     temp = (travelItem*)malloc(sizeof(travelItem));
     temp->ID = GenUIID(0);
-    temp->name[0] = '\0';
+    strcpy(temp->name,"");
     Date tempDate = {2023,0,0};
     temp->startDate = tempDate;
     temp->endDate = tempDate;
