@@ -196,3 +196,28 @@ travelItem* createEmptyItem()
     temp->nextItem = NULL;
     return temp;
 }
+
+void outputFile(travelItem *itemToBeOutput)
+{
+    FILE *fp;
+    fp = fopen("output.csv","w");
+    if(fp == NULL){
+        Log("file failed to output");
+        return;
+        }//output file failed
+    
+    int count;
+    travelItem *temp = itemToBeOutput;
+    fprintf(fp,"ID,name,startDate,endDate,price,score,numberReserved,numberTotal,isReserved,rate,keyword,detail");
+    for(count = 1;count<=itemNum;count++){
+        fprintf(fp,"%d,%s,%d-%d-%d,%d-%d-%d,%.2f,%.2f,%d,%d,%d,%.2f,%s,%s",
+        temp->ID,temp->startDate.year,temp->startDate.month,temp->startDate.date,
+        temp->endDate.year,temp->endDate.month,temp->endDate.date,
+        temp->price,temp->score,temp->numberReserved,temp->numberTotal,
+        temp->isReserved,temp->rate,temp->keyword,temp->detail);
+
+        temp = temp->nextItem;
+    }
+
+    fclose(fp);
+}

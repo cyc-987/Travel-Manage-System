@@ -34,4 +34,7 @@ void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID);
 //create an empty item, but set the next item as NULL
 travelItem* createEmptyItem();
 
+//out put as csv file
+void outputFile(travelItem *itemToBeOutput);
+
 #endif

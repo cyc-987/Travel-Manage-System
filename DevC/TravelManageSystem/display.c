@@ -225,6 +225,9 @@ void drawMyMenuBar(int status)
     drawButton(0.75, 5.7, 0.75, 0.3, "Save",0, 0,"White");
     drawButton(1.5, 5.7, 0.75, 0.3, "Change",0, 0,"White");
 
+    //right buttons
+    drawButton(9, 5.7, 0.75, 0.3, "Output",0, 0,"White");
+
     //special buttons
     if(systemStatus == 1 && sidebarStatus != 3){
         drawButton(2.25, 5.7, 0.75, 0.3, "Add",0, 0,"White");

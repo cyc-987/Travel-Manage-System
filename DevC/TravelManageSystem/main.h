@@ -44,8 +44,6 @@ extern travelItem *currentHead;
 extern travelItem *currentItem;
 extern page;
 
-enum buttonUid {searchButton,resetButton};
-enum menuListUid {file};
 
 
 #endif

@@ -6,6 +6,7 @@ int sidebarStatus = 0;
 int itemNum = 0;
 travelItem *itemHead = NULL;
 travelItem *currentItem = NULL;
+travelItem *currentHead = NULL;
 fileHead *FileHead = NULL;
 int page = 1;
 
@@ -17,7 +18,10 @@ void Main()
 	InitGraphics();
 	InitGUI();
 
+	//init
 	DefineColor("LightBlue",0.01176, 0.60784, 0.89804);
+	currentHead = itemHead;
+	currentItem = currentHead;
 	
 	registerMouseEvent(myMouseEvent);
 	registerCharEvent(CharEventProcess);        

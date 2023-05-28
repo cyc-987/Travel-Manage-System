@@ -68,6 +68,17 @@ void myMouseEvent (int x, int y, int button, int event)
     }else{
         drawButton(1.5, 5.7, 0.75, 0.3, "Change",1,1,"White");
     }
+
+    //output button
+    if(isInRegion(mouseX,mouseY,9, 5.7, 0.75, 0.3) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+        drawButton(9, 5.7, 0.75, 0.3, "Output",1,1,"LightBlue");
+        Log("push output");
+        outputFile(currentHead);
+    }else if(isInRegion(mouseX,mouseY,9, 5.7, 0.75, 0.3)){
+        drawButton(9, 5.7, 0.75, 0.3, "Output",1,1,"Light Gray");
+    }else{
+        drawButton(9, 5.7, 0.75, 0.3, "Output",1,0,"White");
+    }
     //end of menubar mouse event
 
     //side bar event
@@ -78,9 +89,10 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"LightBlue");
             Log("push apply");
             addItem(currentItem);
+            Log("apply return success");
             sidebarStatus = 0;
-            clearSideWindow();
-            drawSideWindow(sidebarStatus);
+            initDisplay(systemStatus);
+            Log("init display success");
         }else if(isInRegion(mouseX,mouseY,8.5, 0.3, 1, 0.4)){
             drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"Light Gray");
         }else{
