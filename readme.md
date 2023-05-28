@@ -1,16 +1,10 @@
 ## 旅游管理系统
 - 这是zju程序设计专题大作业
 
-## 进度
+## 功能
 
-### 5-15
-- 初始化项目 by cyc
-- 增加log调试 by cyc
-
-### 5-19
-- 完成文件操作 by cyc
-
-### 5-20&21
-- 排序操作初步 by cyc
-- 图形化界面初步 by cyc
-- 功能和细节优化 by cyc
+## Pics
+- mainWindow
+![](readmepics\MainWindow.PNG)
+- insert mode
+![](readmepics\insetMode.PNG)
