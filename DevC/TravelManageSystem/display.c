@@ -2,6 +2,7 @@
 
 void initDisplay(int status)
 {
+    DisplayClear();
     if(status == 0)
     {
         drawBasicWindow(status);
@@ -14,12 +15,16 @@ void initDisplay(int status)
         drawMainWindow();
         //Log("test point");
         drawSideWindow(sidebarStatus);
-        Log("test point");
+        //Log("test point");
         drawDatabase(1 , page);
         //Log("test point");
         if(sidebarStatus == 3){
 
         }
+    }else if(status == 2){
+        DisplayClear();
+        drawBasicWindow(status);
+        drawInsert(currentItem);
     }
 }
 
@@ -36,7 +41,9 @@ void drawDatabase(int status, int page){
 	}else if(status==1){
 		if( oldNum+1 <= itemNum ){ 
 	        while( oldNum+i <= itemNum && i<=5){
+                //Log("test point");
 	            drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
+                //Log("test point");
 	            i++;
 	        };
 	    }else if(oldNum >= itemNum){
@@ -199,11 +206,16 @@ void drawSearchBar()
 
 void drawBasicWindow(int status)
 {
-    drawMyMenuBar(status);
-    
-    //middle line
-    MovePen(8,5.7);
-    DrawLine(0,-5.7);
+    if(status == 0 | status == 1){
+        drawMyMenuBar(status);
+        
+        //middle line
+        MovePen(8,5.7);
+        DrawLine(0,-5.7);
+    }else if(status == 3){//insert mode
+        //draw nothing
+    }
+
 }
 
 void drawMyMenuBar(int status)
