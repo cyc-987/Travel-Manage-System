@@ -23,6 +23,9 @@
 #include "strlib.h"
 #include "extgraph.h"
 
+
+
+
 /*
  * Parameters
  * ----------
@@ -91,6 +94,8 @@ CharEventCallback g_char = NULL;
  * --------------------
  * This structure holds the variables that make up the graphics state.
  */
+
+
 
 typedef struct graphicsStateT {
     double cx, cy;

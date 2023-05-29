@@ -1,5 +1,16 @@
 #include "myHeader.h"
 
+extern travelItem *itemHead;
+extern bool isLog;
+extern int systemStatus;
+extern int sidebarStatus;
+extern int itemNum;
+extern travelItem *itemHead;
+extern travelItem *currentItem;
+extern travelItem *currentHead;
+extern fileHead *FileHead;
+extern int page;
+
 void initDisplay(int status)
 {
     DisplayClear();
@@ -42,7 +53,8 @@ void drawDatabase(int status, int page){
 		if( oldNum+1 <= itemNum ){ 
 	        while( oldNum+i <= itemNum && i<=5){
                 //Log("test point");
-	            drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
+                if(oldNum+i <= itemNum)
+	            	drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
                 //Log("test point");
 	            i++;
 	        };
@@ -54,33 +66,45 @@ void drawDatabase(int status, int page){
 }
 
 void drawRow(int id, double y1, double y2, int labelNum){
+	SetPenColor("Black");
+	
+	//go through the list 
     travelItem *ptr;
-    ptr = goThrough(id);
-    char *number[100];
+    ptr = itemHead;
+    int i=0;
+    while (ptr != NULL && i<itemNum)
+    {
+    	i++;
+        if(ptr->ID == id){
+        	break;
+		}
+        else
+			ptr = ptr->nextItem;
+    }
+    
+    char number[10];
     sprintf(number, "%d", labelNum);
     drawTextMiddle(0.2, 0.6, y1, y2, number);
-    drawTextMiddle(0.8, 3.6, y1, y2, ptr->name);
-    char *wholeDate[200];
+    
+    char* name = ptr->name;
+	drawTextMiddle(0.8, 2.8, y1, y2, name);
+    
+    char wholeDate[50];
     sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
         ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
         ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
-    drawTextMiddle(3.8, 5.8, y1, y2, wholeDate);
-    char *price[100];
-    sprintf(price, "%d $", ptr->price);
-    drawTextMiddle(6, 6.8, y1, y2, price);
-    drawButton(7, y1+0.2, 0.8, 0.4, "more infor.", 0 , 0, "");
-}
-
-travelItem* goThrough(int num){
-    travelItem *ptr;
-    ptr = itemHead;
-    while (ptr != NULL)
-    {
-        if(ptr->ID == num)
-            return ptr;
-        ptr = ptr->nextItem;
-    }
-
+	drawTextMiddle(3.0, 5.5, y1, y2, wholeDate);
+    
+    char price[10];
+    sprintf(price, "%.2f $", ptr->price);
+    drawTextMiddle(5.7, 6.5, y1, y2, price);
+    
+    drawButton(7, y1+0.2, 0.8, 0.4, "more infor.",0,0,"red");//can't interact 
+    
+    SetPenColor("Gray");
+	MovePen(0,y1);
+    DrawLine(8,0);
+    
 }
 
 void drawSideWindow(int status)
@@ -194,20 +218,33 @@ void drawInsert(travelItem* item)
 void drawDetails(int id)
 {
     travelItem *ptr;
-    ptr = goThrough(id);
+    //the previous function goThrough() went wrong
+    //substituted verion
+    ptr = itemHead;
+    int i=0;
+    while (ptr != NULL && i<itemNum)
+    {
+    	i++;
+        if(ptr->ID == id){
+        	break;
+		}
+        else
+			ptr = ptr->nextItem;
+    }
+    
     drawTextMiddle(8.0,12.0,4.5,5.5,ptr->name);
-    char *wholeDate[200];
+    char wholeDate[200];
     sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
         ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
         ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
     drawTextMiddle(8.0,12.0,4.0,4.5,wholeDate);
-    char *price[20];
+    char price[20];
     sprintf(price,"$%d",ptr->price);
     drawTextMiddle(8.0,12.0,3.5,4.0,price);
-    char *score[50];
+    char score[50];
     sprintf(score,"%d/5 wondeful",ptr->score);
     drawTextMiddle(8.0,12.0,3.0,3.5,score);
-    char *number[100];
+    char number[100];
     sprintf(number,"%d//%d",ptr->numberReserved,ptr->numberTotal);
     drawTextMiddle(8.0,12.0,2.5,3.0,number);
     drawTextMiddle(8.0,12.0,1.5,2.5,ptr->keyword);
@@ -290,6 +327,8 @@ void drawTextMiddle(double x1, double x2, double y1, double y2, char* label)
     double x,y;
     x = x1 + (fabs(x1-x2)-widthOfText)/2;
     y = y1 + (fabs(y1-y2)-heightOfText)/2 + 0.03;
-    MovePen(x,y);
-    DrawTextString(label);
+//    MovePen(x,y);
+//    string name=label;
+//    DrawTextString(name);
+	drawLabel(x,y,label);
 }

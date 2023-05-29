@@ -11,6 +11,7 @@ fileHead *FileHead = NULL;
 int page = 1;
 
 
+
 void Main()
 {
 	SetWindowTitle("Travel Manage System");
@@ -27,6 +28,6 @@ void Main()
 	registerCharEvent(CharEventProcess);        
 	registerKeyboardEvent(KeyboardEventProcess); 
 	Log("initial complete");
-
+	
 	initDisplay(systemStatus);
 }
