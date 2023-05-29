@@ -91,8 +91,8 @@ void myMouseEvent (int x, int y, int button, int event)
     //agency,apply
     if(systemStatus == 2 && sidebarStatus == 3){
         //apply
-        if(isInRegion(mouseX,mouseY,8.5, 0.3, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
-            drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"LightBlue");
+        if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"LightBlue");
             Log("push apply");
             addItem(currentItem);
             //Log("apply return success");
@@ -100,25 +100,25 @@ void myMouseEvent (int x, int y, int button, int event)
             systemStatus = 1;
             initDisplay(systemStatus);
             //Log("init display success");
-        }else if(isInRegion(mouseX,mouseY,8.5, 0.3, 1, 0.4)){
-            drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"Light Gray");
+        }else if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4)){
+            drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"Light Gray");
         }else{
-            drawButton(8.5, 0.3, 1, 0.4, "Apply",1,1,"White");
+            drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"White");
         }
 
         //cancel
-        if(isInRegion(mouseX,mouseY,10.5, 0.3, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
-            drawButton(10.5, 0.3, 1, 0.4, "Cancel",1,1,"LightBlue");
+        if(isInRegion(mouseX,mouseY,9.7, 1.2, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(9.7, 1.2, 1, 0.4, "Cancel",1,1,"LightBlue");
             Log("push cancel");
             free(currentItem);
             currentItem = NULL;
             sidebarStatus = 0;
             systemStatus = 1;
             initDisplay(systemStatus);
-        }else if(isInRegion(mouseX,mouseY,10.5, 0.3, 1, 0.4)){
-            drawButton(10.5, 0.3, 1, 0.4, "Cancel",1,1,"Light Gray");
+        }else if(isInRegion(mouseX,mouseY,9.7, 1.2, 1, 0.4)){
+            drawButton(9.7, 1.2, 1, 0.4, "Cancel",1,1,"Light Gray");
         }else{
-            drawButton(10.5, 0.3, 1, 0.4, "Cancel",1,1,"White");
+            drawButton(9.7, 1.2, 1, 0.4, "Cancel",1,1,"White");
         }
     }
     //end of apply event
@@ -141,6 +141,54 @@ void myMouseEvent (int x, int y, int button, int event)
         }
     }
     //end of add button
+
+    //agency,edit
+    //edit button
+    if(systemStatus == 1 && sidebarStatus == 2){
+        if(isInRegion(mouseX,mouseY,9.1, 0.3, 1.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"LightBlue");
+            Log("push edit");
+            clearSideWindow();
+            systemStatus = 3;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,2.25, 5.7, 0.75, 0.3)){
+            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"Light Gray");
+        }else{
+            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"White");
+        }
+    }
+    //end of edit button
+
+    if(systemStatus == 3 && sidebarStatus == 2){
+        //save button
+        if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(7.7, 1.2, 1, 0.4, "Save",1,1,"LightBlue");
+            Log("push save");
+            systemStatus = 1;
+            sidebarStatus = 0;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4)){
+            drawButton(7.7, 1.2, 1, 0.4, "Save",1,1,"Light Gray");
+        }else{
+            drawButton(7.7, 1.2, 1, 0.4, "Save",1,1,"White");
+        }
+
+        //delete button
+        if(isInRegion(mouseX,mouseY,9.7, 1.2, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(9.7, 1.2, 1, 0.4, "Delete",1,1,"LightBlue");
+            Log("push delete");
+            deleteItem(currentItem);
+            systemStatus = 1;
+            sidebarStatus = 0;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,9.7, 1.2, 1, 0.4)){
+            drawButton(9.7, 1.2, 1, 0.4, "Delete",1,1,"Light Gray");
+        }else{
+            drawButton(9.7, 1.2, 1, 0.4, "Delete",1,1,"White");
+        }
+    }
+    //end of edit interface
+
 
     //user,reserve button
     if(systemStatus == 0 && sidebarStatus == 1){

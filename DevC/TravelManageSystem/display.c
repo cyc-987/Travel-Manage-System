@@ -110,98 +110,209 @@ void clearSideWindow()
 
 void drawEdit(travelItem* item)
 {
+    //date temp
+    static char sdy[5] = "",sdm[3] = "",sdd[3] = "",edy[5] = "",edm[3] = "",edd[3] = "";
+    itoa(item->startDate.year,sdy ,5);itoa(item->startDate.month,sdm ,3);
+    itoa(item->startDate.date,sdd ,3);itoa(item->endDate.year,sdy ,5);
+    itoa(item->endDate.month,sdm ,3);itoa(item->endDate.date,sdd ,3);
+
+    //draw 
+    //id
     SetPenColor("Black");
-    drawButton(8.5, 0.3, 1, 0.4, "Save", 0, 0, "White");
-    drawButton(10.5, 0.3, 1, 0.4, "Delete", 0, 0, "White");
+    drawLabel(0.5,5.1,"ID:"); 
+    static char id[5] = "";
+    itoa(item->ID,id,5);
+    if(textbox(GenUIID(0), 0.8, 5.0, 1, 0.5, id, sizeof(id))){
+        item->ID = atoi(id);
+    }
+
+    //name 
+    SetPenColor("Black");
+    drawLabel(2.5,5.1,"Name:");
+    textbox(GenUIID(0), 3.0, 5.0, 2, 0.5, item->name, sizeof(item->name));
+
+    //start date
+    SetPenColor("Black");
+    drawLabel(0.5,4.1,"Start Date:");
+    if(textbox(GenUIID(0), 1.5, 4.0, 0.8, 0.4, sdy, sizeof(sdy))){
+        item->startDate.year = atoi(sdy);
+    }
+    SetPenColor("Black");
+    drawLabel(2.4,4.15,"--");
+    if(textbox(GenUIID(0), 2.6, 4.0, 0.6, 0.4, sdm, sizeof(sdm))){
+        item->startDate.month = atoi(sdm);
+    }
+    SetPenColor("Black");
+    drawLabel(3.3,4.15,"--");
+    if(textbox(GenUIID(0), 3.5, 4.0, 0.6, 0.4, sdd, sizeof(sdd))){
+        item->startDate.date = atoi(sdd);
+    }
+    
+    //end date
+    SetPenColor("Black");
+    drawLabel(0.5,3.1,"End Date:");
+    if(textbox(GenUIID(0), 1.5, 3.0, 0.8, 0.4, edy, sizeof(edy))){
+        item->startDate.year = atoi(edy);
+    }
+    SetPenColor("Black");
+    drawLabel(2.4,3.15,"--");
+    if(textbox(GenUIID(0), 2.6, 3.0, 0.6, 0.4, edm, sizeof(edm))){
+        item->startDate.month = atoi(edm);
+    }
+    SetPenColor("Black");
+    drawLabel(3.3,3.15,"--");
+    if(textbox(GenUIID(0), 3.5, 3.0, 0.6, 0.4, edd, 3)){
+        item->startDate.date = atoi(edd);
+    }
+
+    //price
+    SetPenColor("Black");
+    drawLabel(0.5,2.1,"Price:");
+    static char price[10] = "";
+    sprintf(price ,"%5.2f",item->price);
+    if(textbox(GenUIID(0), 1.0, 2.0, 1.0, 0.4, price, sizeof(price))){
+        item->price = atof(price);
+    }
+
+    SetPenColor("Black");
+    drawLabel(2.8,2.1,"Score:");
+	static char score[10] = "";
+    sprintf(score ,"%3.1f",item->score);
+    if(textbox(GenUIID(0), 3.3, 2.0, 1.0, 0.4, score, sizeof(score))){
+        item->score = atof(score);
+    }
+
+    //reserved and total numbers
+    SetPenColor("Black");
+    drawLabel(0.5,1.1,"Reserved Number:");
+    static char reserved[10] = "";
+    itoa(item->numberReserved,reserved,10);
+    if(textbox(GenUIID(0), 1.8, 1.0, 1, 0.4, reserved, sizeof(reserved))){
+        item->numberReserved = atoi(reserved);
+    }
+    SetPenColor("Black");
+    drawLabel(2.9,1.1," //    Reserved Number:");
+    static char total[10] = "";
+    itoa(item->numberTotal,total,10);
+    if(textbox(GenUIID(0), 4.5, 1.0, 1, 0.4, total, sizeof(total))){
+        item->numberTotal = atoi(total);
+    }
+
+    //keyword & detail
+    SetPenColor("Black");
+    drawLabel(6.5,4.6,"Keyword:");
+    drawLabel(6.5,2.8,"Details:");
+    textbox(GenUIID(0), 7.3, 4.5, 4, 1, item->keyword, sizeof(item->keyword));
+    textbox(GenUIID(0), 7.3, 2.7, 4, 1, item->detail, sizeof(item->detail));
+    //end of draw edit
+
+    //draw  button
+    SetPenColor("Black");
+    drawButton(7.7, 1.2, 1, 0.4, "Save", 0, 0, "White");
+    drawButton(9.7, 1.2, 1, 0.4, "Delete", 0, 0, "White");
 }
+
 
 void drawInsert(travelItem* item)
 {
     //Log("insert");
 
     //date temp
-    static char sdy[5] = "sy",sdm[3] = "m",sdd[3] = "d",edy[5] = "ey",edm[3] = "m",edd[3] = "d";
+    static char sdy[5] = "",sdm[3] = "",sdd[3] = "",edy[5] = "",edm[3] = "",edd[3] = "";
 
     //draw input
     //id input
-    static char id[5] = "ID";
-    if(textbox(GenUIID(0), 0.5, 4.65, 1, 0.7, id, sizeof(id))){
+    SetPenColor("Black");
+    drawLabel(0.5,5.1,"ID:"); 
+    static char id[5] = "";
+    if(textbox(GenUIID(0), 0.8, 5.0, 1, 0.5, id, sizeof(id))){
         item->ID = atoi(id);
     }
 
     //name input
+    SetPenColor("Black");
+    drawLabel(2.5,5.1,"Name:");
     strcpy(item->name,"name");
-    textbox(GenUIID(0), 2.5, 4.65, 2, 0.7, item->name, sizeof(item->name));
+    textbox(GenUIID(0), 3.0, 5.0, 2, 0.5, item->name, sizeof(item->name));
 
     //start date
-    if(textbox(GenUIID(0), 0.5, 3.65, 0.5, 0.7, sdy, sizeof(sdy))){
+    SetPenColor("Black");
+    drawLabel(0.5,4.1,"Start Date:");
+    if(textbox(GenUIID(0), 1.5, 4.0, 0.8, 0.4, sdy, sizeof(sdy))){
         item->startDate.year = atoi(sdy);
     }
     SetPenColor("Black");
-    drawTextMiddle(1,1.5,3.5,4.5,"-");
-    if(textbox(GenUIID(0), 1.5, 3.65, 0.5, 0.7, sdm, sizeof(sdm))){
+    drawLabel(2.4,4.15,"--");
+    if(textbox(GenUIID(0), 2.6, 4.0, 0.6, 0.4, sdm, sizeof(sdm))){
         item->startDate.month = atoi(sdm);
     }
     SetPenColor("Black");
-    drawTextMiddle(2,2.5,3.5,4.5,"-");
-    if(textbox(GenUIID(0), 2.5, 3.65, 0.5, 0.7, sdd, sizeof(sdd))){
+    drawLabel(3.3,4.15,"--");
+    if(textbox(GenUIID(0), 3.5, 4.0, 0.6, 0.4, sdd, sizeof(sdd))){
         item->startDate.date = atoi(sdd);
     }
     
     //end date
-    if(textbox(GenUIID(0), 0.5, 2.65, 0.5, 0.7, edy, sizeof(edy))){
+    SetPenColor("Black");
+    drawLabel(0.5,3.1,"End Date:");
+    if(textbox(GenUIID(0), 1.5, 3.0, 0.8, 0.4, edy, sizeof(edy))){
         item->startDate.year = atoi(edy);
     }
     SetPenColor("Black");
-    drawTextMiddle(1,1.5,2.5,3.5,"-");
-    if(textbox(GenUIID(0), 1.5, 2.65, 0.5, 0.7, edm, sizeof(edm))){
+    drawLabel(2.4,3.15,"--");
+    if(textbox(GenUIID(0), 2.6, 3.0, 0.6, 0.4, edm, sizeof(edm))){
         item->startDate.month = atoi(edm);
     }
     SetPenColor("Black");
-    drawTextMiddle(2,2.5,2.5,3.5,"-");
-    if(textbox(GenUIID(0), 2.5, 2.65, 0.5, 0.7, edd, 3)){
+    drawLabel(3.3,3.15,"--");
+    if(textbox(GenUIID(0), 3.5, 3.0, 0.6, 0.4, edd, 3)){
         item->startDate.date = atoi(edd);
     }
 
     //price,etc
-    static char price[10] = "price";
-    if(textbox(GenUIID(0), 0.5, 1.65, 1, 0.7, price, sizeof(price))){
+    SetPenColor("Black");
+    drawLabel(0.5,2.1,"Price:");
+    static char price[10] = "";
+    if(textbox(GenUIID(0), 1.0, 2.0, 1.0, 0.4, price, sizeof(price))){
         item->price = atof(price);
     }
 
-    static char score[10] = "score";
-    if(textbox(GenUIID(0), 2.5, 1.65, 1, 0.7, score, sizeof(score))){
+    SetPenColor("Black");
+    drawLabel(2.8,2.1,"Score:");
+	static char score[10] = "";
+    if(textbox(GenUIID(0), 3.3, 2.0, 1.0, 0.4, score, sizeof(score))){
         item->score = atof(score);
     }
 
-    static char rate[10] = "rate";
-    if(textbox(GenUIID(0), 4.5, 1.65, 1, 0.7, rate, sizeof(rate))){
-        item->rate = atof(rate);
-    }
 
     //reserved and total numbers
-    static char reserved[10] = "reserved";
-    if(textbox(GenUIID(0), 0.5, 0.65, 1, 0.7, reserved, sizeof(reserved))){
+    SetPenColor("Black");
+    drawLabel(0.5,1.1,"Reserved Number:");
+    static char reserved[10] = "";
+    if(textbox(GenUIID(0), 1.8, 1.0, 1, 0.4, reserved, sizeof(reserved))){
         item->numberReserved = atoi(reserved);
     }
     SetPenColor("Black");
-    drawTextMiddle(1.5,2.5,0.5,1.5,"//");
-    static char total[10] = "total";
-    if(textbox(GenUIID(0), 2.5, 0.65, 1, 0.7, total, sizeof(total))){
+    drawLabel(2.9,1.1," //    Reserved Number:");
+    static char total[10] = "";
+    if(textbox(GenUIID(0), 4.5, 1.0, 1, 0.4, total, sizeof(total))){
         item->numberTotal = atoi(total);
     }
 
     //keyword & detail
+    SetPenColor("Black");
+    drawLabel(6.5,4.6,"Keyword:");
+    drawLabel(6.5,2.8,"Details:");
     strcpy(item->keyword,"keyword");
     strcpy(item->detail,"detail");
-    textbox(GenUIID(0), 6.5, 3.5, 5, 2, item->keyword, sizeof(item->keyword));
-    textbox(GenUIID(0), 6.5, 1, 5, 2, item->detail, sizeof(item->detail));
+    textbox(GenUIID(0), 7.3, 4.5, 4, 1, item->keyword, sizeof(item->keyword));
+    textbox(GenUIID(0), 7.3, 2.7, 4, 1, item->detail, sizeof(item->detail));
     //end of draw input
 
     //draw apply button
     SetPenColor("Black");
-    drawButton(8.5, 0.3, 1, 0.4, "Apply", 0, 0, "White");
-    drawButton(10.5, 0.3, 1, 0.4, "Cancel", 0, 0, "White");
+    drawButton(7.7, 1.2, 1, 0.4, "Apply", 0, 0, "White");
+    drawButton(9.7, 1.2, 1, 0.4, "Cancel", 0, 0, "White");
 }
 
 void drawDetails(travelItem* item)
