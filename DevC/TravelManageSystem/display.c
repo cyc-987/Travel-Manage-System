@@ -1,16 +1,5 @@
 #include "myHeader.h"
 
-extern travelItem *itemHead;
-extern bool isLog;
-extern int systemStatus;
-extern int sidebarStatus;
-extern int itemNum;
-extern travelItem *itemHead;
-extern travelItem *currentItem;
-extern travelItem *currentHead;
-extern fileHead *FileHead;
-extern int page;
-
 void initDisplay(int status)
 {
     DisplayClear();
