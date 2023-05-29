@@ -142,6 +142,8 @@ double GetCurrentY(void);
 
 void Main();
 
+
+
 typedef enum
 {
     NO_BUTTON = 0,

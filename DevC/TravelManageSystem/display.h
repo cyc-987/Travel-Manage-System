@@ -51,5 +51,5 @@ void clearSideWindow();
 //editing interface for agency
 void drawEdit(travelItem* item);
 
-void drawDetails(travelItem* item);
+void drawDetails(int id);
 #endif

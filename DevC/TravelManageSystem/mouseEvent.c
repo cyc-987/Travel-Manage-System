@@ -7,7 +7,7 @@ void myMouseEvent (int x, int y, int button, int event)
 	mouseY = ScaleYInches(y);
     uiGetMouse(x,y,button,event);
     initDisplay(systemStatus);
-
+	
     //mouse on button
 
     //search button

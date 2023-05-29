@@ -10,6 +10,8 @@ typedef struct Date
     int date;
 }Date;
 
+
+
 typedef struct travelItem{
     int ID;
 
@@ -43,6 +45,10 @@ extern fileHead *FileHead;
 extern travelItem *currentHead;
 extern travelItem *currentItem;
 extern page;
+
+
+
+
 
 
 
