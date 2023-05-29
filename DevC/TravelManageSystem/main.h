@@ -18,9 +18,9 @@ typedef struct travelItem{
     Date endDate;
 
     double price;
+    double score;
     int numberReserved;
     int numberTotal;
-    double score;
     bool isReserved;
     double rate;
 
@@ -35,14 +35,15 @@ typedef struct fileHead{
 }fileHead;
 
 extern int systemStatus;
+extern int sidebarStatus;
 extern bool isLog;
 extern int itemNum;
 extern travelItem *itemHead;
 extern fileHead *FileHead;
 extern travelItem *currentHead;
+extern travelItem *currentItem;
+extern page;
 
-enum buttonUid {searchButton,resetButton};
-enum menuListUid {file};
 
 
 #endif
