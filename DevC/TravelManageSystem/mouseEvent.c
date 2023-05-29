@@ -142,21 +142,6 @@ void myMouseEvent (int x, int y, int button, int event)
     }
     //end of add button
 
-    //agency,edit button
-    if(systemStatus == 1 && sidebarStatus == 2){
-        if(isInRegion(mouseX,mouseY,9.1, 0.3, 1.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
-            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"LightBlue");
-            Log("push edit");
-            clearSideWindow();
-            systemStatus = 3;
-            initDisplay(systemStatus);
-        }else if(isInRegion(mouseX,mouseY,2.25, 5.7, 0.75, 0.3)){
-            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"Light Gray");
-        }else{
-            drawButton(9.1, 0.3, 1.8, 0.4, "Edit",1,1,"White");
-        }
-    }
-
     //user,reserve button
     if(systemStatus == 0 && sidebarStatus == 1){
         if(isInRegion(mouseX,mouseY,9.1, 0.3, 1.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
@@ -171,7 +156,7 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(9.1, 0.3, 1.8, 0.4, "Reserve",1,1,"White");
         }
     }
-    //end of reserve button
+    //end of reserve buttons
     //end of sidebar event
 }
 
