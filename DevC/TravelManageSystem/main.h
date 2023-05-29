@@ -35,14 +35,11 @@ typedef struct fileHead{
 }fileHead;
 
 extern int systemStatus;
-extern int sidebarStatus;
 extern bool isLog;
 extern int itemNum;
 extern travelItem *itemHead;
 extern fileHead *FileHead;
 extern travelItem *currentHead;
-extern travelItem *currentItem;
-extern page;
 
 enum buttonUid {searchButton,resetButton};
 enum menuListUid {file};
