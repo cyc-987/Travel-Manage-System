@@ -21,10 +21,6 @@ void initDisplay(int status)
         DisplayClear();
         drawBasicWindow(status);
         drawInsert(currentItem);
-    }else if(status == 3){
-        DisplayClear();
-        drawBasicWindow(status);
-        drawEdit(currentItem);
     }
 }
 
@@ -125,10 +121,14 @@ void drawSideWindow(int status)
         drawTextMiddle(8,12,0,5.7,"Nothing to display.");
     }else if(status == 1 ){
         drawDetails(currentItem);
-        drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "White");
+        if(currentItem->isReserved){
+            drawButton(9.1, 0.3, 1.8, 0.4, "Unreserve", 0, 0, "White");
+        }else{
+            drawButton(9.1, 0.3, 1.8, 0.4, "Reserve", 0, 0, "White");
+        }
     }else if(status == 2){
         drawDetails(currentItem);
-        drawButton(9.1, 0.3, 1.8, 0.4, "Edit", 0, 0, "White");
+        drawButton(9.1, 0.3, 1.8, 0.4, "Delete", 0, 0, "White");
     }
 }
 
@@ -136,111 +136,6 @@ void clearSideWindow()
 {
     drawButton(8, 0, 4, 5.7, "",1, 1,"White");
 }
-
-void drawEdit(travelItem* item)
-{
-    //date temp
-    static char sdy[5] = "",sdm[3] = "",sdd[3] = "",edy[5] = "",edm[3] = "",edd[3] = "";
-    itoa(item->startDate.year,sdy ,5);itoa(item->startDate.month,sdm ,3);
-    itoa(item->startDate.date,sdd ,3);itoa(item->endDate.year,sdy ,5);
-    itoa(item->endDate.month,sdm ,3);itoa(item->endDate.date,sdd ,3);
-
-    //draw 
-    //id
-    SetPenColor("Black");
-    drawLabel(0.5,5.1,"ID:"); 
-    static char id[5] = "";
-    itoa(item->ID,id,5);
-    if(textbox(GenUIID(0), 0.8, 5.0, 1, 0.5, id, sizeof(id))){
-        item->ID = atoi(id);
-    }
-
-    //name 
-    SetPenColor("Black");
-    drawLabel(2.5,5.1,"Name:");
-    textbox(GenUIID(0), 3.0, 5.0, 2, 0.5, item->name, sizeof(item->name));
-
-    //start date
-    SetPenColor("Black");
-    drawLabel(0.5,4.1,"Start Date:");
-    if(textbox(GenUIID(0), 1.5, 4.0, 0.8, 0.4, sdy, sizeof(sdy))){
-        item->startDate.year = atoi(sdy);
-    }
-    SetPenColor("Black");
-    drawLabel(2.4,4.15,"--");
-    if(textbox(GenUIID(0), 2.6, 4.0, 0.6, 0.4, sdm, sizeof(sdm))){
-        item->startDate.month = atoi(sdm);
-    }
-    SetPenColor("Black");
-    drawLabel(3.3,4.15,"--");
-    if(textbox(GenUIID(0), 3.5, 4.0, 0.6, 0.4, sdd, sizeof(sdd))){
-        item->startDate.date = atoi(sdd);
-    }
-    
-    //end date
-    SetPenColor("Black");
-    drawLabel(0.5,3.1,"End Date:");
-    if(textbox(GenUIID(0), 1.5, 3.0, 0.8, 0.4, edy, sizeof(edy))){
-        item->startDate.year = atoi(edy);
-    }
-    SetPenColor("Black");
-    drawLabel(2.4,3.15,"--");
-    if(textbox(GenUIID(0), 2.6, 3.0, 0.6, 0.4, edm, sizeof(edm))){
-        item->startDate.month = atoi(edm);
-    }
-    SetPenColor("Black");
-    drawLabel(3.3,3.15,"--");
-    if(textbox(GenUIID(0), 3.5, 3.0, 0.6, 0.4, edd, 3)){
-        item->startDate.date = atoi(edd);
-    }
-
-    //price
-    SetPenColor("Black");
-    drawLabel(0.5,2.1,"Price:");
-    static char price[10] = "";
-    sprintf(price ,"%5.2f",item->price);
-    if(textbox(GenUIID(0), 1.0, 2.0, 1.0, 0.4, price, sizeof(price))){
-        item->price = atof(price);
-    }
-
-    SetPenColor("Black");
-    drawLabel(2.8,2.1,"Score:");
-	static char score[10] = "";
-    sprintf(score ,"%3.1f",item->score);
-    if(textbox(GenUIID(0), 3.3, 2.0, 1.0, 0.4, score, sizeof(score))){
-        item->score = atof(score);
-    }
-
-    //reserved and total numbers
-    SetPenColor("Black");
-    drawLabel(0.5,1.1,"Reserved Number:");
-    static char reserved[10] = "";
-    itoa(item->numberReserved,reserved,10);
-    if(textbox(GenUIID(0), 1.8, 1.0, 1, 0.4, reserved, sizeof(reserved))){
-        item->numberReserved = atoi(reserved);
-    }
-    SetPenColor("Black");
-    drawLabel(2.9,1.1," //    Reserved Number:");
-    static char total[10] = "";
-    itoa(item->numberTotal,total,10);
-    if(textbox(GenUIID(0), 4.5, 1.0, 1, 0.4, total, sizeof(total))){
-        item->numberTotal = atoi(total);
-    }
-
-    //keyword & detail
-    SetPenColor("Black");
-    drawLabel(6.5,4.6,"Keyword:");
-    drawLabel(6.5,2.8,"Details:");
-    textbox(GenUIID(0), 7.3, 4.5, 4, 1, item->keyword, sizeof(item->keyword));
-    textbox(GenUIID(0), 7.3, 2.7, 4, 1, item->detail, sizeof(item->detail));
-    //end of draw edit
-
-    //draw  button
-    SetPenColor("Black");
-    drawButton(7.7, 1.2, 1, 0.4, "Save", 0, 0, "White");
-    drawButton(9.7, 1.2, 1, 0.4, "Delete", 0, 0, "White");
-}
-
 
 void drawInsert(travelItem* item)
 {
@@ -344,22 +239,9 @@ void drawInsert(travelItem* item)
     drawButton(9.7, 1.2, 1, 0.4, "Cancel", 0, 0, "White");
 }
 
-void drawDetails(int id)
+void drawDetails(travelItem* currentItem)
 {
-    travelItem *ptr;
-    //the previous function goThrough() went wrong
-    //substituted verion
-    ptr = itemHead;
-    int i=0;
-    while (ptr != NULL && i<itemNum)
-    {
-    	i++;
-        if(ptr->ID == id){
-        	break;
-		}
-        else
-			ptr = ptr->nextItem;
-    }
+    travelItem* ptr = currentItem;
     
     drawTextMiddle(8.0,12.0,4.5,5.5,ptr->name);
     char wholeDate[200];
@@ -368,12 +250,12 @@ void drawDetails(int id)
         ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
     drawTextMiddle(8.0,12.0,4.0,4.5,wholeDate);
     char price[20];
-    sprintf(price,"$%d",ptr->price);
+    sprintf(price,"$ %.2f",ptr->price);
     drawTextMiddle(8.0,12.0,3.5,4.0,price);
-    char score[50];
-    sprintf(score,"%d/5 wondeful",ptr->score);
+    char score[20];
+    sprintf(score,"%.2f/5 wondeful",ptr->score);
     drawTextMiddle(8.0,12.0,3.0,3.5,score);
-    char number[100];
+    char number[50];
     sprintf(number,"%d//%d",ptr->numberReserved,ptr->numberTotal);
     drawTextMiddle(8.0,12.0,2.5,3.0,number);
     drawTextMiddle(8.0,12.0,2.0,2.5,ptr->keyword);

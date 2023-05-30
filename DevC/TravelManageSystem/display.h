@@ -35,13 +35,6 @@ void drawButton(double startX, double startY, double w, double h, char* label,in
 //print the text in middle of a square
 void drawTextMiddle(double x1, double x2, double y1, double y2, char* label);
 
-
-//a midtern function of drawDatabase
-void drawRow(int id, double y1, double y2, int labelNum);
-
-//go through all the travelItems to find the one who has the exact ID
-travelItem* goThrough(int num); 
-
 void drawInsert(travelItem* item);
 
 void clearSideWindow();
@@ -49,7 +42,7 @@ void clearSideWindow();
 //editing interface for agency
 void drawEdit(travelItem* item);
 
-void drawDetails(int id);
+void drawDetails(travelItem* currentItem);
 
 //display the item in the current item point
 //a func in draw mainwindow
