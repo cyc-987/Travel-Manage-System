@@ -67,6 +67,8 @@ int saveFile()
     if(FileHead == NULL){
         FileHead = (fileHead*)malloc(sizeof(fileHead));
         FileHead->num = itemNum;
+    }else{
+        FileHead->num = itemNum;
     }
     fwrite(FileHead,sizeof(fileHead),1,fp);
     Log("write filehead");

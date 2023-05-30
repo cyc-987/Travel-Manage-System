@@ -100,7 +100,7 @@ void myMouseEvent (int x, int y, int button, int event)
             //Log("apply return success");
             sidebarStatus = 0;
             systemStatus = 1;
-            initDisplay(systemStatus);
+            refresh();
             //Log("init display success");
         }else if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4)){
             drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"Light Gray");
@@ -240,6 +240,101 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(5,0.2,1,0.6,"Pre Page",1,1,"White");
         }
     }
+    //five more info buttons
+    if(systemStatus == 0 | systemStatus == 1)
+    {
+        //button0
+        if(lineIsActive[0] == 1){
+            if(isInRegion(mouseX,mouseY,6.6,4.4,0.8,0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+                drawButton(6.6,4.4,0.8,0.4,"more info.",1,1,"LightBlue");
+                Log("push more info");
+                if(systemStatus == 0){
+                    sidebarStatus = 1;
+                }else{
+                    sidebarStatus = 2;
+                }
+                locateToCurrentItem(page, 0);   
+                initDisplay(systemStatus);
+            }else if(isInRegion(mouseX,mouseY,6.6,4.4,0.8,0.4)){
+                drawButton(6.6,4.4,0.8,0.4,"more info.",1,1,"Light Gray");
+            }else{
+                drawButton(6.6,4.4,0.8,0.4,"more info.",1,1,"White");
+            }
+        }
+        //button1
+        if(lineIsActive[1] == 1){
+            if(isInRegion(mouseX,mouseY,6.6,3.6,0.8,0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+                drawButton(6.6,3.6,0.8,0.4,"more info.",1,1,"LightBlue");
+                Log("push more info");
+                if(systemStatus == 0){
+                    sidebarStatus = 1;
+                }else{
+                    sidebarStatus = 2;
+                }
+                locateToCurrentItem(page, 1);   
+                initDisplay(systemStatus);
+            }else if(isInRegion(mouseX,mouseY,6.6,3.6,0.8,0.4)){
+                drawButton(6.6,3.6,0.8,0.4,"more info.",1,1,"Light Gray");
+            }else{
+                drawButton(6.6,3.6,0.8,0.4,"more info.",1,1,"White");
+            }
+        }
+        //button2
+        if(lineIsActive[2] == 1){
+            if(isInRegion(mouseX,mouseY,6.6,2.8,0.8,0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+                drawButton(6.6,2.8,0.8,0.4,"more info.",1,1,"LightBlue");
+                Log("push more info");
+                if(systemStatus == 0){
+                    sidebarStatus = 1;
+                }else{
+                    sidebarStatus = 2;
+                }
+                locateToCurrentItem(page, 2);   
+                initDisplay(systemStatus);
+            }else if(isInRegion(mouseX,mouseY,6.6,2.8,0.8,0.4)){
+                drawButton(6.6,2.8,0.8,0.4,"more info.",1,1,"Light Gray");
+            }else{
+                drawButton(6.6,2.8,0.8,0.4,"more info.",1,1,"White");
+            }
+        }
+        //button3
+        if(lineIsActive[3] == 1){
+            if(isInRegion(mouseX,mouseY,6.6,2,0.8,0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+                drawButton(6.6,2,0.8,0.4,"more info.",1,1,"LightBlue");
+                Log("push more info");
+                if(systemStatus == 0){
+                    sidebarStatus = 1;
+                }else{
+                    sidebarStatus = 2;
+                }
+                locateToCurrentItem(page, 3);   
+                initDisplay(systemStatus);
+            }else if(isInRegion(mouseX,mouseY,6.6,2,0.8,0.4)){
+                drawButton(6.6,2,0.8,0.4,"more info.",1,1,"Light Gray");
+            }else{
+                drawButton(6.6,2,0.8,0.4,"more info.",1,1,"White");
+            }
+        }
+        //button4
+        if(lineIsActive[4] == 1){
+            if(isInRegion(mouseX,mouseY,6.6,1.2,0.8,0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+                drawButton(6.6,1.2,0.8,0.4,"more info.",1,1,"LightBlue");
+                Log("push more info");
+                if(systemStatus == 0){
+                    sidebarStatus = 1;
+                }else{
+                    sidebarStatus = 2;
+                }
+                locateToCurrentItem(page, 4);   
+                initDisplay(systemStatus);
+            }else if(isInRegion(mouseX,mouseY,6.6,1.2,0.8,0.4)){
+                drawButton(6.6,1.2,0.8,0.4,"more info.",1,1,"Light Gray");
+            }else{
+                drawButton(6.6,1.2,0.8,0.4,"more info.",1,1,"White");
+            }
+        }
+    }
+    //end of five more info buttons
     //end of main window event
 }
 
@@ -251,4 +346,25 @@ int isInRegion(double mouseX, double mouseY, double x, double y, double w, doubl
     && mouseY > y){
         return 1;
     }else return 0;
+}
+
+void locateToCurrentItem(int page, int offset)
+{
+    int count = 1;
+    travelItem* head = currentHead;
+    //move the head to the current page
+    while(count<page){
+        int i;
+        for(i=1;i<=5;i++){
+            head = head->nextItem;
+        }
+        count++;
+    }
+
+    int k;
+    for(k=1;k<=offset;k++){
+        head = head->nextItem;
+    }
+
+    currentItem = head;
 }
