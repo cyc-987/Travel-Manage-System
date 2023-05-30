@@ -26,7 +26,6 @@ int openFile()
     fileHead *FileHeadTemp = (fileHead*)malloc(sizeof(fileHead));
     fread(FileHeadTemp,sizeof(fileHead),1,fp);
     FileHead = FileHeadTemp;
-    int itemNum;
     itemNum = FileHead->num;
 
     Log("file head read successfully");
@@ -39,6 +38,7 @@ int openFile()
     for(count = 1;count<=itemNum;count++){
         temp1 = (travelItem*)malloc(itemStructSize);
         fread(temp1,itemStructSize,1,fp);
+        Log("read one piece of data.");
         if(count == 1){
             itemHead = temp1;
         }else{
@@ -58,7 +58,7 @@ int openFile()
 int saveFile()
 {
     FILE *fp;
-    fp = fopen("data","w+");
+    fp = fopen("data","wb");
     if(fp == NULL){
         Log("file failed to save");
         return 1;
@@ -66,14 +66,17 @@ int saveFile()
 
     if(FileHead == NULL){
         FileHead = (fileHead*)malloc(sizeof(fileHead));
+        FileHead->num = itemNum;
     }
     fwrite(FileHead,sizeof(fileHead),itemNum,fp);
+    Log("write filehead");
     int count;
     travelItem *temp = itemHead;
     unsigned int itemStructSize;
     itemStructSize = sizeof(travelItem);
     for(count = 1;count<=itemNum;count++){
         fwrite(temp,itemStructSize,1,fp);
+        Log("write one piece of data.");
         temp = temp->nextItem;
     }
 
@@ -181,7 +184,7 @@ travelItem* createEmptyItem()
 {
     travelItem *temp;
     temp = (travelItem*)malloc(sizeof(travelItem));
-    temp->ID = GenUIID(0);
+    temp->ID = 0;
     strcpy(temp->name,"");
     Date tempDate = {2023,0,0};
     temp->startDate = tempDate;

@@ -55,5 +55,8 @@ void drawDetails(int id);
 //a func in draw mainwindow
 void displayItem(travelItem* currentHead, int page);
 
+//a midtern func used by displayItem
+void drawSingleItem(travelItem* item, int relativeNum);
+
 void refresh();
 #endif

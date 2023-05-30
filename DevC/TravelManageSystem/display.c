@@ -44,11 +44,43 @@ void displayItem(travelItem* currentHead, int page)
     DrawLine(0,4);
     DrawLine(-7,0);
     DrawLine(0,-4);
+
+    SetPenColor("Gray");
+    MovePen(0.5,4.2);
+    DrawLine(7,0);
+    MovePen(0.5,3.4);
+    DrawLine(7,0);
+    MovePen(0.5,2.6);
+    DrawLine(7,0);
+    MovePen(0.5,1.8);
+    DrawLine(7,0);
+    SetPenColor("Black");
     //end of draw main area
 
     //display the current data
+    travelItem* head = currentHead;
     if(currentHead == NULL){
         drawTextMiddle(0.5,7.5,1,5,"Empty.");
+    }else{
+        int count = 1;
+        //move the head to the current page
+        while(count<page){
+            int i;
+            for(i=1;i<=5;i++){
+                head = head->nextItem;
+            }
+            count++;
+        }
+
+        //draw the item of current page
+        travelItem* relativePoint = head;
+        while(relativePoint != NULL){
+            int i = 0;
+            drawSingleItem(head+i,i);
+            lineIsActive[i] = 1;
+            i++;
+            relativePoint = relativePoint->nextItem;
+        }
     }
     //end of display
 
@@ -56,51 +88,35 @@ void displayItem(travelItem* currentHead, int page)
     drawButton(5,0.2,1,0.6,"Pre Page",0,0,"White");
     drawButton(6.5,0.2,1,0.6,"Next Page",0,0,"White");
     char currentPage[20];
-    sprintf(currentPage,"Current Page: %d",page);
-    drawTextMiddle(0.5,2,0,1,currentPage);;
+    sprintf(currentPage,"Current Page: %d/%d",page,MaxPage);
+    drawTextMiddle(0.5,2,0,1,currentPage);
     //end of draw button
 }
-void drawRow(int id, double y1, double y2, int labelNum){
-	SetPenColor("Black");
-	
-	//go through the list 
-    travelItem *ptr;
-    ptr = itemHead;
-    int i=0;
-    while (ptr != NULL && i<itemNum)
-    {
-    	i++;
-        if(ptr->ID == id){
-        	break;
-		}
-        else
-			ptr = ptr->nextItem;
-    }
-    
-    char number[10];
-    sprintf(number, "%d", labelNum);
-    drawTextMiddle(0.2, 0.6, y1, y2, number);
-    
-    char* name = ptr->name;
-	drawTextMiddle(0.8, 2.8, y1, y2, name);
-    
-    char wholeDate[50];
-    sprintf(wholeDate,"%d-%d-%d to %d-%d-%d", 
-        ptr->startDate.year, ptr->startDate.month, ptr->startDate.date,
-        ptr->endDate.year, ptr->endDate.month, ptr->endDate.date);   
-	drawTextMiddle(3.0, 5.5, y1, y2, wholeDate);
-    
+
+void drawSingleItem(travelItem* item, int relativeNum)
+{
+    char ID[10];
+    sprintf(ID,"%d",item->ID);
+    SetPenColor("Black");
+    drawTextMiddle(0.5,1,4.2-relativeNum*0.8,5-relativeNum*0.8,ID);
+    drawTextMiddle(1,2,4.2-relativeNum*0.8,5-relativeNum*0.8,item->name);
+    char Date[20];
+    sprintf(Date,"%d-%d-%d->%d-%d-%d",item->startDate.year,item->startDate.month,item->startDate.date,
+    item->endDate.year,item->endDate.month,item->endDate.date);
+    drawTextMiddle(2,3.5,4.2-relativeNum*0.8,5-relativeNum*0.8,Date);
     char price[10];
-    sprintf(price, "%.2f $", ptr->price);
-    drawTextMiddle(5.7, 6.5, y1, y2, price);
-    
-    drawButton(7, y1+0.2, 0.8, 0.4, "more infor.",0,0,"red");//can't interact 
-    
-    SetPenColor("Gray");
-	MovePen(0,y1);
-    DrawLine(8,0);
-    
+    sprintf(price,"$ %.2f",item->price);
+    drawTextMiddle(3.5,4.5,4.2-relativeNum*0.8,5-relativeNum*0.8,price);
+    char rate[10];
+    sprintf(rate,"%.2f/5.0",item->score);
+    drawTextMiddle(4.5,5.5,4.2-relativeNum*0.8,5-relativeNum*0.8,rate);
+    char reserved[20];
+    sprintf(reserved,"%d/%d reserved",item->numberReserved,item->numberTotal);
+    drawTextMiddle(5.5,6.5,4.2-relativeNum*0.8,5-relativeNum*0.8,reserved);
+    drawButton(6.6,4.4-relativeNum*0.8,0.8,0.4,"more info.",0,0,"White");
 }
+
+
 
 void drawSideWindow(int status)
 {
@@ -244,7 +260,7 @@ void drawInsert(travelItem* item)
     //name input
     SetPenColor("Black");
     drawLabel(2.5,5.1,"Name:");
-    strcpy(item->name,"name");
+    //strcpy(item->name,"name");
     textbox(GenUIID(0), 3.0, 5.0, 2, 0.5, item->name, sizeof(item->name));
 
     //start date
@@ -268,17 +284,17 @@ void drawInsert(travelItem* item)
     SetPenColor("Black");
     drawLabel(0.5,3.1,"End Date:");
     if(textbox(GenUIID(0), 1.5, 3.0, 0.8, 0.4, edy, sizeof(edy))){
-        item->startDate.year = atoi(edy);
+        item->endDate.year = atoi(edy);
     }
     SetPenColor("Black");
     drawLabel(2.4,3.15,"--");
     if(textbox(GenUIID(0), 2.6, 3.0, 0.6, 0.4, edm, sizeof(edm))){
-        item->startDate.month = atoi(edm);
+        item->endDate.month = atoi(edm);
     }
     SetPenColor("Black");
     drawLabel(3.3,3.15,"--");
     if(textbox(GenUIID(0), 3.5, 3.0, 0.6, 0.4, edd, 3)){
-        item->startDate.date = atoi(edd);
+        item->endDate.date = atoi(edd);
     }
 
     //price,etc
@@ -290,7 +306,7 @@ void drawInsert(travelItem* item)
     }
 
     SetPenColor("Black");
-    drawLabel(2.8,2.1,"Score:");
+    drawLabel(2.8,2.1,"Rate:");
 	static char score[10] = "";
     if(textbox(GenUIID(0), 3.3, 2.0, 1.0, 0.4, score, sizeof(score))){
         item->score = atof(score);
@@ -315,8 +331,8 @@ void drawInsert(travelItem* item)
     SetPenColor("Black");
     drawLabel(6.5,4.6,"Keyword:");
     drawLabel(6.5,2.8,"Details:");
-    strcpy(item->keyword,"keyword");
-    strcpy(item->detail,"detail");
+    //strcpy(item->keyword,"keyword");
+    //strcpy(item->detail,"detail");
     textbox(GenUIID(0), 7.3, 4.5, 4, 1, item->keyword, sizeof(item->keyword));
     textbox(GenUIID(0), 7.3, 2.7, 4, 1, item->detail, sizeof(item->detail));
     //end of draw input
@@ -452,5 +468,6 @@ void refresh()
     currentHead = itemHead;
     currentItem = currentHead;
     page = 1;
+    lineIsActive[0] = lineIsActive[1] = lineIsActive[2] = lineIsActive[3] = lineIsActive[4] = 0;
     initDisplay(systemStatus);
 }

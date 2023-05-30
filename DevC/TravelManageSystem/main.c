@@ -11,6 +11,7 @@ fileHead *FileHead = NULL;
 int page = 1;
 char searchText[100] = "";
 bool MaxPage = 1;
+bool lineIsActive[5] = {0,0,0,0,0};
 
 void Main()
 {
@@ -18,6 +19,7 @@ void Main()
 	SetWindowSize(12,6);
 	InitGraphics();
 	InitGUI();
+	//InitConsole();
 
 	//init
 	DefineColor("LightBlue",0.01176, 0.60784, 0.89804);

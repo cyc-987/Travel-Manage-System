@@ -15,7 +15,7 @@ typedef struct Date
 typedef struct travelItem{
     int ID;
 
-    char name[100];
+    char name[50];
     Date startDate;
     Date endDate;
 
@@ -47,6 +47,7 @@ extern travelItem *currentItem;
 extern page;
 extern char searchText[100];
 extern int MaxPage;
+extern bool lineIsActive[5];
 
 
 
