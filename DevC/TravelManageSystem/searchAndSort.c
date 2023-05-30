@@ -29,24 +29,26 @@ travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert)
 
 travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 {
-    if(itemToBeSearched == NULL) return NULL;
+    if(itemToBeSearched == NULL) return NULL;   
     char* lowwerKeyword = upperToLower(keyword);
     travelItem* head = itemToBeSearched;
 
-    char *temp1,*temp2,*temp3;
+    char temp1[100],temp2[100],temp3[100];
     travelItem* resultHead = NULL;
     travelItem* resultTemp = resultHead;
     travelItem* temp;
-    while(head->nextItem != NULL){
-        temp1 = head->name;
-        temp2 = head->keyword;
-        temp3 = head->detail;
-        temp1 = upperToLower(temp1);
-        temp2 = upperToLower(temp2);
-        temp3 = upperToLower(temp3);
-        if(strstr(temp1,lowwerKeyword) != NULL | 
-        strstr(temp2,lowwerKeyword) != NULL |
-        strstr(temp3,lowwerKeyword) != NULL){
+    //Log("tp");
+    while(head != NULL){
+        strcpy(temp1,head->name);
+        strcpy(temp2,head->keyword);
+        strcpy(temp3,head->detail);
+        upperToLower(temp1);
+        upperToLower(temp2);
+        upperToLower(temp3);
+        if(strpbrk(temp1,lowwerKeyword) != NULL | 
+        strpbrk(temp2,lowwerKeyword) != NULL |
+        strpbrk(temp3,lowwerKeyword) != NULL){
+            Log("find one result");
             if(resultHead == NULL){
                 resultHead = createEmptyItem();
                 itemCopy(resultHead,head,head->ID);
@@ -65,20 +67,13 @@ travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 
 char* upperToLower(char* toBeConvert)
 {
-    char temp;
-    char* result = (char*)malloc(sizeof(toBeConvert));
-    result = NULL;
-    char* resultTemp = result;
-    char* toBeConvertTemp = toBeConvert;
-    temp = *(toBeConvertTemp);
-    while(temp != '\0'){
-        temp = tolower(temp);
-        *(resultTemp) = temp;
-        resultTemp ++;
-        toBeConvertTemp ++;
+    char* temp = toBeConvert;
+    while(*temp != '\0'){
+        *temp = tolower(*temp);
+        temp++;
     }
-    *(++resultTemp) = '\0';
-    return result;
+    *temp = '\0';
+    return temp;
 }
 
 travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)

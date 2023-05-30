@@ -39,9 +39,6 @@ void drawInsert(travelItem* item);
 
 void clearSideWindow();
 
-//editing interface for agency
-void drawEdit(travelItem* item);
-
 void drawDetails(travelItem* currentItem);
 
 //display the item in the current item point

@@ -176,7 +176,7 @@ void itemCopy(travelItem *copy, travelItem *toBeCopy, int ID)
     copy->numberReserved = toBeCopy->numberReserved;
     copy->numberTotal = toBeCopy->numberTotal;
     copy->isReserved = toBeCopy->isReserved;
-    copy->rate = toBeCopy->rate;
+    copy->score = toBeCopy->score;
     strcpy(copy->keyword,toBeCopy->keyword);
     strcpy(copy->detail,toBeCopy->detail);
     copy->nextItem = NULL;
@@ -196,6 +196,7 @@ travelItem* createEmptyItem()
     temp->numberTotal = 0;
     temp->isReserved = FALSE;
     temp->rate = 0;
+    temp->score = 0;
     strcpy(temp->keyword,"");
     strcpy(temp->detail,"");
     temp->nextItem = NULL;

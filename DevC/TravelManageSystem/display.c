@@ -3,6 +3,7 @@
 void initDisplay(int status)
 {
     DisplayClear();
+    lineIsActive[0] = lineIsActive[1] = lineIsActive[2] = lineIsActive[3] = lineIsActive[4] = 0;
     if(status == 0)
     {
         drawBasicWindow(status);
@@ -53,6 +54,15 @@ void displayItem(travelItem* currentHead, int page)
     SetPenColor("Black");
     //end of draw main area
 
+    //count for the items in current head
+    int countItem = 0;
+    travelItem* countTemp = currentHead;
+    while(countTemp != NULL){
+        countItem ++;
+        countTemp = countTemp->nextItem;
+    }
+    MaxPage = countItem/5 + 1;
+
     //display the current data
     travelItem* head = currentHead;
     if(currentHead == NULL){
@@ -73,8 +83,8 @@ void displayItem(travelItem* currentHead, int page)
         int k = 0;
         lineIsActive[0] = lineIsActive[1] = lineIsActive[2] = lineIsActive[3] = lineIsActive[4] = 0;
         while(relativePoint != NULL && k<5){
-            drawSingleItem(relativePoint,k);
             lineIsActive[k] = 1;
+            drawSingleItem(relativePoint,k);
             k++;
             relativePoint = relativePoint->nextItem;
         }
@@ -269,6 +279,11 @@ void drawSearchBar()
 
     drawButton(6.1, 5.25, 0.8, 0.4, "Search",0,0,"");
     drawButton(7.1, 5.25, 0.8, 0.4, "Reset",0,0,"");
+
+    //search box
+    if(textbox(GenUIID(0), 0.5, 5.3, 2, 0.3, searchText, sizeof(searchText))){
+        Log("detect change in search box");
+    }
 }
 
 void drawBasicWindow(int status)

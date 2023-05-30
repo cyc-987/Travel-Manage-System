@@ -15,6 +15,9 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,6.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(6.1, 5.25, 0.8, 0.4, "Search",1,1,"LightBlue");
             Log("push search");
+            currentHead = searchByKeyword(currentHead, searchText);
+            currentItem = currentHead;
+            initDisplay(systemStatus);
         }else if(isInRegion(mouseX,mouseY,6.1, 5.25, 0.8, 0.4)){
             drawButton(6.1, 5.25, 0.8, 0.4, "Search",1,1,"Light Gray");
         }else{
@@ -24,6 +27,8 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,7.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,1,"LightBlue");
             Log("push reset");
+            sidebarStatus = 0;
+            refresh();
         }else if(isInRegion(mouseX,mouseY,7.1, 5.25, 0.8, 0.4)){
             drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,1,"Light Gray");
         }else{
