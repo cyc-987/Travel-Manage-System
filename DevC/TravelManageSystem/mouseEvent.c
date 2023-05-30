@@ -35,6 +35,50 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(7.1, 5.25, 0.8, 0.4, "Reset",1,0,"White");
         }
     }
+    //three sort buttons
+    if(systemStatus != 2)
+    {
+        //by id
+        if(isInRegion(mouseX,mouseY,5.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(5.1, 5.25, 0.8, 0.4, "Sort(ID)",1,1,"LightBlue");
+            Log("push sort(ID)");
+            currentHead = sort(currentHead, normalInsertByID);
+            currentItem = currentHead;
+            page = 1;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,5.1, 5.25, 0.8, 0.4)){
+            drawButton(5.1, 5.25, 0.8, 0.4, "Sort(ID)",1,1,"Light Gray");
+        }else{
+            drawButton(5.1, 5.25, 0.8, 0.4, "Sort(ID)",1,0,"White");
+        }
+        //by price
+        if(isInRegion(mouseX,mouseY,4.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(4.1, 5.25, 0.8, 0.4, "Sort(Price)",1,1,"LightBlue");
+            Log("push sort(price)");
+            currentHead = sort(currentHead, normalInsertByPrice);
+            currentItem = currentHead;
+            page = 1;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,4.1, 5.25, 0.8, 0.4)){
+            drawButton(4.1, 5.25, 0.8, 0.4, "Sort(Price)",1,1,"Light Gray");
+        }else{
+            drawButton(4.1, 5.25, 0.8, 0.4, "Sort(Price)",1,0,"White");
+        }
+        //by rate
+        if(isInRegion(mouseX,mouseY,3.1, 5.25, 0.8, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(3.1, 5.25, 0.8, 0.4, "Sort(Rate)",1,1,"LightBlue");
+            Log("push sort(rate)");
+            currentHead = sort(currentHead, normalInsertByRate);
+            currentItem = currentHead;
+            page = 1;
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,3.1, 5.25, 0.8, 0.4)){
+            drawButton(3.1, 5.25, 0.8, 0.4, "Sort(Rate)",1,1,"Light Gray");
+        }else{
+            drawButton(3.1, 5.25, 0.8, 0.4, "Sort(Rate)",1,0,"White");
+        }
+    }
+    //end of sort buttons
     //end of mouse on button
 
     //menu bar button event
@@ -66,12 +110,12 @@ void myMouseEvent (int x, int y, int button, int event)
             Log("push change");
             if(systemStatus == 0){
                 systemStatus = 1;
-                sidebarStatus = 2;
+                sidebarStatus = 0;
                 DisplayClear();
                 initDisplay(systemStatus);
             }else if(systemStatus == 1){
                 systemStatus = 0;
-                sidebarStatus = 1;
+                sidebarStatus = 0;
                 DisplayClear();
                 initDisplay(systemStatus);
             }

@@ -23,6 +23,7 @@ void initDisplay(int status)
         drawBasicWindow(status);
         drawInsert(currentItem);
     }
+    //Log("init display");
 }
 
 void drawMainWindow()
@@ -277,6 +278,7 @@ void drawSearchBar()
     MovePen(0,5.2);
     DrawLine(8,0);
 
+    SetPenColor("Black");
     drawButton(6.1, 5.25, 0.8, 0.4, "Search",0,0,"");
     drawButton(7.1, 5.25, 0.8, 0.4, "Reset",0,0,"");
 
@@ -284,6 +286,12 @@ void drawSearchBar()
     if(textbox(GenUIID(0), 0.5, 5.3, 2, 0.3, searchText, sizeof(searchText))){
         Log("detect change in search box");
     }
+
+    //sort buttons
+    SetPenColor("Black");
+    drawButton(5.1, 5.25, 0.8, 0.4, "Sort(ID)",0,0,"");
+    drawButton(4.1, 5.25, 0.8, 0.4, "Sort(Price)",0,0,"");
+    drawButton(3.1, 5.25, 0.8, 0.4, "Sort(Rate)",0,0,"");
 }
 
 void drawBasicWindow(int status)

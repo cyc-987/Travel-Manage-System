@@ -86,6 +86,7 @@ travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)
     if(Head == NULL){
         Head = ptr;
         Head->nextItem = NULL;
+        Log("add item head");
     }else{
         while((ptr->price>ptr2->price) && (ptr2->nextItem != NULL)){
             ptr1 = ptr2;
@@ -99,6 +100,7 @@ travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)
             ptr2->nextItem = ptr;
             ptr->nextItem = NULL;
         }
+        Log("add item");
     }
 }
 
@@ -119,6 +121,7 @@ travelItem* sort(travelItem * itemToBeSortHead, travelItem*(*func)(travelItem *H
         func(head,temp);
         temp2 = temp2->nextItem;
     }
+    return head;
 }
 
 travelItem* normalInsertByRate(travelItem *Head, travelItem *itemToBeInsert)
