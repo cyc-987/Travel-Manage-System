@@ -68,7 +68,7 @@ int saveFile()
         FileHead = (fileHead*)malloc(sizeof(fileHead));
         FileHead->num = itemNum;
     }
-    fwrite(FileHead,sizeof(fileHead),itemNum,fp);
+    fwrite(FileHead,sizeof(fileHead),1,fp);
     Log("write filehead");
     int count;
     travelItem *temp = itemHead;
@@ -213,7 +213,7 @@ void outputFile(travelItem *itemToBeOutput)
     fprintf(fp,"ID,name,startDate,endDate,price,rate,numberReserved,numberTotal,isReserved,rate,keyword,detail");
     fprintf(fp,"\n");
     while(temp != NULL){
-        fprintf(fp,"%d,%s,%d-%d-%d,%d-%d-%d,%.2f,%.2f,%d,%d,%d,%s,%s",
+        fprintf(fp,"%d,%s,%d-%d-%d,%d-%d-%d,%.2f,%.2f,%d,%d,%d,%s,%s\n",
         temp->ID,temp->name,temp->startDate.year,temp->startDate.month,temp->startDate.date,
         temp->endDate.year,temp->endDate.month,temp->endDate.date,
         temp->price,temp->score,temp->numberReserved,temp->numberTotal,

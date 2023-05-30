@@ -74,11 +74,12 @@ void displayItem(travelItem* currentHead, int page)
 
         //draw the item of current page
         travelItem* relativePoint = head;
-        while(relativePoint != NULL){
-            int i = 0;
-            drawSingleItem(head+i,i);
-            lineIsActive[i] = 1;
-            i++;
+        int k = 0;
+        lineIsActive[0] = lineIsActive[1] = lineIsActive[2] = lineIsActive[3] = lineIsActive[4] = 0;
+        while(relativePoint != NULL && k<5){
+            drawSingleItem(relativePoint,k);
+            lineIsActive[k] = 1;
+            k++;
             relativePoint = relativePoint->nextItem;
         }
     }
@@ -98,7 +99,7 @@ void drawSingleItem(travelItem* item, int relativeNum)
     char ID[10];
     sprintf(ID,"%d",item->ID);
     SetPenColor("Black");
-    drawTextMiddle(0.5,1,4.2-relativeNum*0.8,5-relativeNum*0.8,ID);
+    drawTextMiddle(0.5,1,(4.2-relativeNum*0.8),(5-relativeNum*0.8),ID);
     drawTextMiddle(1,2,4.2-relativeNum*0.8,5-relativeNum*0.8,item->name);
     char Date[20];
     sprintf(Date,"%d-%d-%d->%d-%d-%d",item->startDate.year,item->startDate.month,item->startDate.date,

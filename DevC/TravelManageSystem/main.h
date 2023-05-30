@@ -11,7 +11,7 @@ typedef struct Date
 }Date;
 
 
-
+//#pragma pack(1)
 typedef struct travelItem{
     int ID;
 
@@ -31,10 +31,13 @@ typedef struct travelItem{
 
     struct travelItem *nextItem;
 }travelItem;
+//#pragma pack()
 
+//#pragma pack(1)
 typedef struct fileHead{
     int num;
 }fileHead;
+//#pragma pack()
 
 extern int systemStatus;
 extern int sidebarStatus;
