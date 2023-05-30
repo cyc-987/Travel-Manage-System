@@ -321,7 +321,7 @@ void drawInsert(travelItem* item)
         item->numberReserved = atoi(reserved);
     }
     SetPenColor("Black");
-    drawLabel(2.9,1.1," //    Reserved Number:");
+    drawLabel(2.9,1.1," //    Total Number:");
     static char total[10] = "";
     if(textbox(GenUIID(0), 4.5, 1.0, 1, 0.4, total, sizeof(total))){
         item->numberTotal = atoi(total);

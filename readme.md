@@ -7,4 +7,4 @@
 - mainWindow
 ![](/readmepics/MainWindow.PNG)
 - insert mode
-![](/readmepics/insetMode.PNG)
+![](/readmepics/insertMode.PNG)

@@ -209,15 +209,15 @@ void outputFile(travelItem *itemToBeOutput)
         return;
         }//output file failed
     
-    int count;
     travelItem *temp = itemToBeOutput;
-    fprintf(fp,"ID,name,startDate,endDate,price,score,numberReserved,numberTotal,isReserved,rate,keyword,detail");
-    for(count = 1;count<=itemNum;count++){
-        fprintf(fp,"%d,%s,%d-%d-%d,%d-%d-%d,%.2f,%.2f,%d,%d,%d,%.2f,%s,%s",
-        temp->ID,temp->startDate.year,temp->startDate.month,temp->startDate.date,
+    fprintf(fp,"ID,name,startDate,endDate,price,rate,numberReserved,numberTotal,isReserved,rate,keyword,detail");
+    fprintf(fp,"\n");
+    while(temp != NULL){
+        fprintf(fp,"%d,%s,%d-%d-%d,%d-%d-%d,%.2f,%.2f,%d,%d,%d,%s,%s",
+        temp->ID,temp->name,temp->startDate.year,temp->startDate.month,temp->startDate.date,
         temp->endDate.year,temp->endDate.month,temp->endDate.date,
         temp->price,temp->score,temp->numberReserved,temp->numberTotal,
-        temp->isReserved,temp->rate,temp->keyword,temp->detail);
+        temp->isReserved,temp->keyword,temp->detail);
 
         temp = temp->nextItem;
     }
