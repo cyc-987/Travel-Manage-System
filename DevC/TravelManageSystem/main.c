@@ -9,6 +9,8 @@ travelItem *currentItem = NULL;
 travelItem *currentHead = NULL;
 fileHead *FileHead = NULL;
 int page = 1;
+char searchText[100] = "";
+bool MaxPage = 1;
 
 void Main()
 {
@@ -19,13 +21,12 @@ void Main()
 
 	//init
 	DefineColor("LightBlue",0.01176, 0.60784, 0.89804);
-	currentHead = itemHead;
-	currentItem = currentHead;
+	openFile();
 	
 	registerMouseEvent(myMouseEvent);
 	registerCharEvent(CharEventProcess);        
 	registerKeyboardEvent(KeyboardEventProcess); 
 	Log("initial complete");
 	
-	initDisplay(systemStatus);
+	refresh();
 }

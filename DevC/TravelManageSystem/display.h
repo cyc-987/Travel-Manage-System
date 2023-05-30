@@ -35,8 +35,6 @@ void drawButton(double startX, double startY, double w, double h, char* label,in
 //print the text in middle of a square
 void drawTextMiddle(double x1, double x2, double y1, double y2, char* label);
 
-//draw the main database interface
-void drawDatabase(int status,int page);
 
 //a midtern function of drawDatabase
 void drawRow(int id, double y1, double y2, int labelNum);
@@ -52,4 +50,10 @@ void clearSideWindow();
 void drawEdit(travelItem* item);
 
 void drawDetails(int id);
+
+//display the item in the current item point
+//a func in draw mainwindow
+void displayItem(travelItem* currentHead, int page);
+
+void refresh();
 #endif

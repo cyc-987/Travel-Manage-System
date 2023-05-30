@@ -39,6 +39,7 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,0, 5.7, 0.75, 0.3) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(0, 5.7, 0.75, 0.3, "Refresh",1,1,"LightBlue");
             Log("push refresh");
+            refresh();
         }else if(isInRegion(mouseX,mouseY,0, 5.7, 0.75, 0.3)){
             drawButton(0, 5.7, 0.75, 0.3, "Refresh",1,1,"Light Gray");
         }else{
@@ -48,6 +49,7 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,0.75, 5.7, 0.75, 0.3) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(0.75, 5.7, 0.75, 0.3, "Save",1,1,"LightBlue");
             Log("push save");
+            saveFile();
         }else if(isInRegion(mouseX,mouseY,0.75, 5.7, 0.75, 0.3)){
             drawButton(0.75, 5.7, 0.75, 0.3, "Save",1,1,"Light Gray");
         }else{
@@ -165,7 +167,7 @@ void myMouseEvent (int x, int y, int button, int event)
             drawButton(7.7, 1.2, 1, 0.4, "Save",1,1,"LightBlue");
             Log("push save");
             systemStatus = 1;
-            sidebarStatus = 0;
+            sidebarStatus = 2;
             initDisplay(systemStatus);
         }else if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4)){
             drawButton(7.7, 1.2, 1, 0.4, "Save",1,1,"Light Gray");
@@ -206,6 +208,39 @@ void myMouseEvent (int x, int y, int button, int event)
     }
     //end of reserve buttons
     //end of sidebar event
+
+    //main window event
+    //next page
+    if(systemStatus == 0 | systemStatus == 1){
+        if(isInRegion(mouseX,mouseY,6.5,0.2,1,0.6) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(6.5,0.2,1,0.6,"Next Page",1,1,"LightBlue");
+            Log("push next page");
+            if(page < MaxPage){
+                page++;
+            }
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,6.5,0.2,1,0.6)){
+            drawButton(6.5,0.2,1,0.6,"Next Page",1,1,"Light Gray");
+        }else{
+            drawButton(6.5,0.2,1,0.6,"Next Page",1,1,"White");
+        }
+    }
+    //pre page
+    if(systemStatus == 0 | systemStatus == 1){
+        if(isInRegion(mouseX,mouseY,5,0.2,1,0.6) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
+            drawButton(5,0.2,1,0.6,"Pre Page",1,1,"LightBlue");
+            Log("push pre page");
+            if(page > 1){
+                page--;
+            }
+            initDisplay(systemStatus);
+        }else if(isInRegion(mouseX,mouseY,5,0.2,1,0.6)){
+            drawButton(5,0.2,1,0.6,"Pre Page",1,1,"Light Gray");
+        }else{
+            drawButton(5,0.2,1,0.6,"Pre Page",1,1,"White");
+        }
+    }
+    //end of main window event
 }
 
 int isInRegion(double mouseX, double mouseY, double x, double y, double w, double h)

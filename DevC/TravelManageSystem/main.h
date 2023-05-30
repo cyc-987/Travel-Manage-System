@@ -45,6 +45,8 @@ extern fileHead *FileHead;
 extern travelItem *currentHead;
 extern travelItem *currentItem;
 extern page;
+extern char searchText[100];
+extern int MaxPage;
 
 
 

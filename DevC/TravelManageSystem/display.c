@@ -8,15 +8,11 @@ void initDisplay(int status)
         drawBasicWindow(status);
         drawMainWindow();
         drawSideWindow(sidebarStatus);
-        drawDatabase(0 , page);
     }else if(status == 1)
     {
         drawBasicWindow(status);
         drawMainWindow();
-        //Log("test point");
         drawSideWindow(sidebarStatus);
-        //Log("test point");
-        drawDatabase(1 , page);
         //Log("test point");
         if(sidebarStatus == 3){
 
@@ -35,29 +31,35 @@ void initDisplay(int status)
 void drawMainWindow()
 {
     drawSearchBar();
+    displayItem(currentHead,page);
 }
 
-void drawDatabase(int status, int page){
-    int i = 1;
-    int oldNum = (page-1)*5;
-    if (status==0){
-		drawTextMiddle(0, 8, 0, 5.2, "No more data.");
-	}else if(status==1){
-		if( oldNum+1 <= itemNum ){ 
-	        while( oldNum+i <= itemNum && i<=5){
-                //Log("test point");
-                if(oldNum+i <= itemNum)
-	            	drawRow(oldNum+i, 5.2-i*0.8, 6-i*0.8, i);
-                //Log("test point");
-	            i++;
-	        };
-	    }else if(oldNum >= itemNum){
-	        drawTextMiddle(0, 8, 0, 5.2, "No more data.");
-	        return;
-	    }
+
+void displayItem(travelItem* currentHead, int page)
+{
+    //draw the main area
+    SetPenColor("Black");
+    MovePen(0.5,1);
+    DrawLine(7,0);
+    DrawLine(0,4);
+    DrawLine(-7,0);
+    DrawLine(0,-4);
+    //end of draw main area
+
+    //display the current data
+    if(currentHead == NULL){
+        drawTextMiddle(0.5,7.5,1,5,"Empty.");
     }
-}
+    //end of display
 
+    //draw page operation button
+    drawButton(5,0.2,1,0.6,"Pre Page",0,0,"White");
+    drawButton(6.5,0.2,1,0.6,"Next Page",0,0,"White");
+    char currentPage[20];
+    sprintf(currentPage,"Current Page: %d",page);
+    drawTextMiddle(0.5,2,0,1,currentPage);;
+    //end of draw button
+}
 void drawRow(int id, double y1, double y2, int labelNum){
 	SetPenColor("Black");
 	
@@ -110,9 +112,6 @@ void drawSideWindow(int status)
     }else if(status == 2){
         drawDetails(currentItem);
         drawButton(9.1, 0.3, 1.8, 0.4, "Edit", 0, 0, "White");
-    }else if(status == 3){
-        clearSideWindow();
-        drawInsert(currentItem);
     }
 }
 
@@ -447,3 +446,11 @@ void drawTextMiddle(double x1, double x2, double y1, double y2, char* label)
 	drawLabel(x,y,label);
 }
 
+void refresh()
+{
+    MaxPage = itemNum/5 + 1;
+    currentHead = itemHead;
+    currentItem = currentHead;
+    page = 1;
+    initDisplay(systemStatus);
+}
