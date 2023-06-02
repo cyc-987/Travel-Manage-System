@@ -1,17 +1,17 @@
 # Project: TraverManageSystem
 # Makefile created by Dev-C++ 5.11
 
-CPP      = g++.exe -D__DEBUG__
-CC       = gcc.exe -D__DEBUG__
+CPP      = g++.exe
+CC       = gcc.exe
 WINDRES  = windres.exe
 OBJ      = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o ../compiled/searchAndSort.o ../compiled/display.o ../compiled/shape.o ../compiled/mouseEvent.o ../compiled/otherEvents.o
 LINKOBJ  = ../compiled/exceptio.o ../compiled/genlib.o ../compiled/graphics.o ../compiled/linkedlist.o ../compiled/random.o ../compiled/simpio.o ../compiled/strlib.o ../compiled/imgui.o ../compiled/main.o ../compiled/fileOperation.o ../compiled/searchAndSort.o ../compiled/display.o ../compiled/shape.o ../compiled/mouseEvent.o ../compiled/otherEvents.o
-LIBS     = -L"D:/Dev-Cpp/MinGW64/lib32" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -L"D:/YJL/5.28/Travel-Manage-System/DevC/TravelManageSystem" -mwindows -m32 -g3
+LIBS     = -L"D:/Dev-Cpp/MinGW64/lib32" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -L"D:/YJL/5.28/Travel-Manage-System/DevC/TravelManageSystem" -mwindows -m32
 INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"../../libgraphics" -I"../../simpleGUI"
 CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"../../libgraphics" -I"../../simpleGUI"
 BIN      = ../compiled/1-drawsomething.exe
-CXXFLAGS = $(CXXINCS) -m32 -g3
-CFLAGS   = $(INCS) -m32 -g3
+CXXFLAGS = $(CXXINCS) -m32
+CFLAGS   = $(INCS) -m32
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
