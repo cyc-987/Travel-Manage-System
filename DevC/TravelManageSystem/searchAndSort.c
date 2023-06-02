@@ -23,7 +23,7 @@ travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert)
             ptr2->nextItem = ptr;
             ptr->nextItem = NULL;
         }
-        Log("add item(id)");
+        //Log("add item(id)");
     }
     return Head;
 }
@@ -31,8 +31,9 @@ travelItem* normalInsertByID(travelItem *Head, travelItem *itemToBeInsert)
 
 travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 {
-    if(itemToBeSearched == NULL) return NULL;   
+    if(itemToBeSearched == NULL) return NULL;  
     char* lowwerKeyword = upperToLower(keyword);
+    Log(lowwerKeyword);
     travelItem* head = itemToBeSearched;
 
     char temp1[100],temp2[100],temp3[100];
@@ -44,12 +45,13 @@ travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
         strcpy(temp1,head->name);
         strcpy(temp2,head->keyword);
         strcpy(temp3,head->detail);
-        upperToLower(temp1);
-        upperToLower(temp2);
-        upperToLower(temp3);
-        if(strpbrk(temp1,lowwerKeyword) != NULL | 
-        strpbrk(temp2,lowwerKeyword) != NULL |
-        strpbrk(temp3,lowwerKeyword) != NULL){
+        strcpy(temp1, upperToLower(temp1));
+        Log(temp1);
+        strcpy(temp2, upperToLower(temp2));
+        strcpy(temp3, upperToLower(temp3));
+        if(strstr(temp1,lowwerKeyword) != NULL | 
+        strstr(temp2,lowwerKeyword) != NULL |
+        strstr(temp3,lowwerKeyword) != NULL){
             Log("find one result");
             if(resultHead == NULL){
                 resultHead = createEmptyItem();
@@ -69,13 +71,16 @@ travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 
 char* upperToLower(char* toBeConvert)
 {
-    char* temp = toBeConvert;
+    char *word;
+    word = (char*)malloc(sizeof(char*)*150);
+    strcpy(word,toBeConvert);
+    char* temp = word;
     while(*temp != '\0'){
         *temp = tolower(*temp);
         temp++;
     }
     *temp = '\0';
-    return temp;
+    return word;
 }
 
 travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)
@@ -101,7 +106,7 @@ travelItem* normalInsertByPrice(travelItem *Head, travelItem *itemToBeInsert)
             ptr2->nextItem = ptr;
             ptr->nextItem = NULL;
         }
-        Log("add item(price)");
+        //Log("add item(price)");
     }
 
     return Head;
