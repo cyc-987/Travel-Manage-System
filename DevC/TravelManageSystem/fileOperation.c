@@ -152,10 +152,9 @@ int deleteItem(travelItem *itemToDelete)
         if(ptr2->ID == itemToDelete->ID){
             ptr1->nextItem = ptr2->nextItem;
             free(ptr2);
-        }else{
-            ptr1 = ptr2;
-            ptr2 = ptr1->nextItem;
         }
+        ptr1 = ptr2;
+        ptr2 = ptr1->nextItem;        
     }
     itemNum--;
 
