@@ -49,4 +49,7 @@ void displayItem(travelItem* currentHead, int page);
 void drawSingleItem(travelItem* item, int relativeNum);
 
 void refresh();
+
+void drawWrong();
+void clearWrong();
 #endif

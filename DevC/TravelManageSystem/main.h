@@ -51,6 +51,7 @@ extern page;
 extern char searchText[100];
 extern int MaxPage;
 extern bool lineIsActive[5];
+extern bool isWrong;
 
 
 

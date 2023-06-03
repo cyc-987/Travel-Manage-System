@@ -162,6 +162,11 @@ void drawInsert(travelItem* item)
     static char id[5] = "";
     if(textbox(GenUIID(0), 0.8, 5.0, 1, 0.5, id, sizeof(id))){
         item->ID = atoi(id);
+        if(atoi(id)<=0){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
 
     //name input
@@ -175,16 +180,31 @@ void drawInsert(travelItem* item)
     drawLabel(0.5,4.1,"Start Date:");
     if(textbox(GenUIID(0), 1.5, 4.0, 0.8, 0.4, sdy, sizeof(sdy))){
         item->startDate.year = atoi(sdy);
+        if(atoi(sdy) <= 2022){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     SetPenColor("Black");
     drawLabel(2.4,4.15,"--");
     if(textbox(GenUIID(0), 2.6, 4.0, 0.6, 0.4, sdm, sizeof(sdm))){
         item->startDate.month = atoi(sdm);
+        if(atoi(sdm)<=0 | atoi(sdm)>=13){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     SetPenColor("Black");
     drawLabel(3.3,4.15,"--");
     if(textbox(GenUIID(0), 3.5, 4.0, 0.6, 0.4, sdd, sizeof(sdd))){
         item->startDate.date = atoi(sdd);
+        if(atoi(sdd)<=0 | atoi(sdd)>=32){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     
     //end date
@@ -192,16 +212,31 @@ void drawInsert(travelItem* item)
     drawLabel(0.5,3.1,"End Date:");
     if(textbox(GenUIID(0), 1.5, 3.0, 0.8, 0.4, edy, sizeof(edy))){
         item->endDate.year = atoi(edy);
+        if(atoi(edy)<=2022){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     SetPenColor("Black");
     drawLabel(2.4,3.15,"--");
     if(textbox(GenUIID(0), 2.6, 3.0, 0.6, 0.4, edm, sizeof(edm))){
         item->endDate.month = atoi(edm);
+        if(atoi(edm)<=0 | atoi(edm)>=13){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     SetPenColor("Black");
     drawLabel(3.3,3.15,"--");
     if(textbox(GenUIID(0), 3.5, 3.0, 0.6, 0.4, edd, 3)){
         item->endDate.date = atoi(edd);
+        if(atoi(edd)<=0 | atoi(edd)>=32){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
 
     //price,etc
@@ -210,6 +245,11 @@ void drawInsert(travelItem* item)
     static char price[10] = "";
     if(textbox(GenUIID(0), 1.0, 2.0, 1.0, 0.4, price, sizeof(price))){
         item->price = atof(price);
+        if(atof(price)<0){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
 
     SetPenColor("Black");
@@ -217,6 +257,11 @@ void drawInsert(travelItem* item)
 	static char score[10] = "";
     if(textbox(GenUIID(0), 3.3, 2.0, 1.0, 0.4, score, sizeof(score))){
         item->score = atof(score);
+        if(atof(score)<0){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
 
 
@@ -226,12 +271,28 @@ void drawInsert(travelItem* item)
     static char reserved[10] = "";
     if(textbox(GenUIID(0), 1.8, 1.0, 1, 0.4, reserved, sizeof(reserved))){
         item->numberReserved = atoi(reserved);
+        if(atoi(reserved)<0){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
     }
     SetPenColor("Black");
     drawLabel(2.9,1.1," //    Total Number:");
     static char total[10] = "";
     if(textbox(GenUIID(0), 4.5, 1.0, 1, 0.4, total, sizeof(total))){
         item->numberTotal = atoi(total);
+        if(atoi(total)<0 | atoi(reserved)>atoi(total)){
+            isWrong = 1;
+        }else{
+            isWrong = 0;
+        }
+    }
+
+    if(isWrong == 1){
+        drawWrong();
+    }else{
+        clearWrong();
     }
 
     //keyword & detail
@@ -376,4 +437,19 @@ void refresh()
     page = 1;
     lineIsActive[0] = lineIsActive[1] = lineIsActive[2] = lineIsActive[3] = lineIsActive[4] = 0;
     initDisplay(systemStatus);
+}
+
+void drawWrong()
+{
+    SetPenColor("Red");
+    drawTextMiddle(0,3,0,0.5,"Invalid input!");
+    SetPenColor("Black");
+}
+void clearWrong()
+{
+    SetPenColor("White");
+    StartFilledRegion(1);
+    drawSquare(0,0,3,0.5);
+    EndFilledRegion();
+    SetPenColor("Black");
 }

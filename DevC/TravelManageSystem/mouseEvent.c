@@ -147,12 +147,14 @@ void myMouseEvent (int x, int y, int button, int event)
         if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4) && (event == BUTTON_DOWN) && (button == LEFT_BUTTON)){
             drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"LightBlue");
             Log("push apply");
-            addItem(currentItem);
-            //Log("apply return success");
-            sidebarStatus = 0;
-            systemStatus = 1;
-            refresh();
-            //Log("init display success");
+            if(!isWrong){
+                addItem(currentItem);
+                //Log("apply return success");
+                sidebarStatus = 0;
+                systemStatus = 1;
+                refresh();
+                //Log("init display success");
+            }
         }else if(isInRegion(mouseX,mouseY,7.7, 1.2, 1, 0.4)){
             drawButton(7.7, 1.2, 1, 0.4, "Apply",1,1,"Light Gray");
         }else{

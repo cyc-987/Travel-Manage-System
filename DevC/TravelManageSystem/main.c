@@ -12,6 +12,7 @@ int page = 1;
 char searchText[100] = "";
 bool MaxPage = 1;
 bool lineIsActive[5] = {0,0,0,0,0};
+bool isWrong = 0;
 
 void Main()
 {
