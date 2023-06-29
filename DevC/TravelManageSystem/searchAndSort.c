@@ -33,7 +33,7 @@ travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
 {
     if(itemToBeSearched == NULL) return NULL;  
     char* lowwerKeyword = upperToLower(keyword);
-    Log(lowwerKeyword);
+    //Log(lowwerKeyword);
     travelItem* head = itemToBeSearched;
 
     char temp1[100],temp2[100],temp3[100];
@@ -46,7 +46,7 @@ travelItem* searchByKeyword(travelItem *itemToBeSearched, char* keyword)
         strcpy(temp2,head->keyword);
         strcpy(temp3,head->detail);
         strcpy(temp1, upperToLower(temp1));
-        Log(temp1);
+        //Log(temp1);
         strcpy(temp2, upperToLower(temp2));
         strcpy(temp3, upperToLower(temp3));
         if(strstr(temp1,lowwerKeyword) != NULL | 
